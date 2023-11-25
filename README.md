@@ -2,6 +2,52 @@
 
 Simple NeoVIM config written in lua for general-purpose use.
 
+## Instalation
+### Linux/MacOS
+#### Main config
+``` bash
+# make a backup of your current config
+    mv ~/.config/nvim{,.bak}
+    mv ~/.local/share/nvim{,.bak}
+    mv ~/.local/state/nvim{,.bak}
+    mv ~/.cache/nvim{,.bak}
+# install packer
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# install this config
+    git clone https://github.com/PolskiGlizda/nvim-config.git ~/.config/nvim
+# launch NeoVIM
+    nvim
+# inside nvim run :PackerSync
+```
+#### Side config
+``` bash
+# install packer
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+# install this config
+    git clone https://github.com/PolskiGlizda/nvim-config.git ~/.config/PolskiGlizda/nvim-config
+# install plugins
+    NVIM_APPNAME=PolskiGlizda/nvim-config/ nvim --headless +"PackerSync" +qa
+# run this config
+    NVIM_APPNAME=PolskiGlizda/nvim-config/ nvim
+```
+### Windows
+NOTE: if you're using Windows 10, you need developer mode enabled in order to use local plugins (creating symbolic links requires admin privileges on Windows)
+``` PowerShell
+# make a backup of current config
+    Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
+    Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
+# install packer
+    git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
+# install this config
+    git clone https://github.com/PolskiGlizda/nvim-config.git $env:LOCALAPPDATA\nvim
+# start nvim
+    nvim
+# inside nvim run :PackerSync
+```
+
 ## Plugins
 
 Plugins are handled by Packer
