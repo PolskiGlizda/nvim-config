@@ -30,7 +30,7 @@ Plugins are handled by Packer
 
 ## Custom key binds
 
-<leader> = " "
+\<leader\> = " "
 
 ### General
 
@@ -38,18 +38,18 @@ Plugins are handled by Packer
 
 | Key Bind | Description |
 | -------- | ----------- |
-| <leader>pv | Native NeoVIM file manager(Ex) |
-| <leader>y | Yank to system clipboard |
-| <leader>Y | Yank whole line to system clipboard |
-| <leader>s | Replace a word  globaly |
-| <leader>x | Make current file executable(Unix-like OS exlusive) |
+| \<leader\>pv | Native NeoVIM file manager(Ex) |
+| \<leader\>y | Yank to system clipboard |
+| \<leader\>Y | Yank whole line to system clipboard |
+| \<leader\>s | Replace a word  globaly |
+| \<leader\>x | Make current file executable(Unix-like OS exlusive) |
 
 #### Visual mode
 
 | Key Bind | Description |
 | -------- | ----------- |
-| <leader>p | Paste but keep current buffor |
-| <leader>y | Yank to system clipboard |
+| \<leader\>p | Paste but keep current buffor |
+| \<leader\>y | Yank to system clipboard |
 
 #### Insert mode
 
@@ -59,32 +59,32 @@ Plugins are handled by Packer
 
 | Key Bind | Description |
 | -------- | ----------- |
-| <leader>pf | File finder |
-| <C-p> | Git file finder |
-| <leader>ps | Grep search |
+| \<leader\>pf | File finder |
+| \<C-p\> | Git file finder |
+| \<leader\>ps | Grep search |
 
 #### Harpoon
 
 | Key Bind | Description |
 | -------- | ----------- |
-| <leader>a | Add file to the list |
-| <C-e> | Show list |
-| <C-h> | Go to file 1 |
-| <C-t> | Go to file 2 |
-| <C-n> | Go to file 3 |
-| <C-s> | Go to file 4 |
+| \<leader\>a | Add file to the list |
+| \<C-e\> | Show list |
+| \<C-h\> | Go to file 1 |
+| \<C-t\> | Go to file 2 |
+| \<C-n\> | Go to file 3 |
+| \<C-s\> | Go to file 4 |
 
 #### UndoTree
 
 | Key Bind | Description |
 | -------- | ----------- |
-| <leader>u | Open UndoTree |
+| \<leader\>u | Open UndoTree |
 
 #### Fugitive
 
 | Key Bind | Description |
 | -------- | ----------- |
-| <leader>gs | Open git |
+| \<leader\>gs | Open git |
 
 #### LSP-zero
 
@@ -92,10 +92,10 @@ Plugins are handled by Packer
 
 | Key Bind | Description |
 | -------- | ----------- |
-| <C-p> | Previous item |
-| <C-n> | Next item |
-| <C-y> | Confirm |
-| <C-Space> | Complete |
+| \<C-p\> | Previous item |
+| \<C-n\> | Next item |
+| \<C-y\> | Confirm |
+| \<C-Space\> | Complete |
 
 ##### Normal mode
 
@@ -103,19 +103,19 @@ Plugins are handled by Packer
 | -------- | ----------- |
 | gd | Go to definition |
 | K | Manual of hovered |
-| <leader>vws | Workspace symbol |
-| <leader>vd | Open float |
+| \<leader\>vws | Workspace symbol |
+| \<leader\>vd | Open float |
 | [d | Go to next |
 | ]d | Go to previous |
-| <leader>vca | Code action |
-| <leader>vrr | References |
-| <leader>vrn | Rename |
+| \<leader\>vca | Code action |
+| \<leader\>vrr | References |
+| \<leader\>vrn | Rename |
 
 ##### Input mode
 
 | Key Bind | Description |
 | -------- | ----------- |
-| <C-h> | Signature help |
+| \<C-h\> | Signature help |
 
 #### Comment
 
