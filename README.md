@@ -48,6 +48,69 @@ NOTE: if you're using Windows 10, you need developer mode enabled in order to us
 # inside nvim run :PackerSync
 ```
 
+## Adding plugins
+### Linux/MacOS
+Adding plugins is as simple as editing few lines. First you need to add plugin to packer:
+
+``` bash
+    nvim ~/.config/nvim/lua/glizda/packer.lua
+```
+Here you'll see all the plugins added to packer. To add another one simply go to the end of file and create new line before `end)` and write
+``` lua
+    use("mainteiner-name/plugin-name")
+```
+Now save file and run
+``` vim
+    :so
+    :PackerSync
+```
+The plugin is now installed but you need one more thing for it to work
+```bash
+# create a file
+    touch ~/.config/nvim/after/plugin/plugin-name.lua
+# edit it
+    nvim ~/.config/nvim/after/plugin/plugin-name.lua
+```
+Here will be your configuration for this plugin, I'll show the most basic way to use it. For more information check out documentation on the plugin. Now create an object of this plugin and start it:
+
+``` lua
+    local plugin_name = require("plugin-name")
+    plugin_name.setup({
+        -- here place your configuration
+        })
+```
+### Windows
+Adding plugins is as simple as editing few lines. First you need to add plugin to packer:
+
+``` PowerShell
+    nvim $env:LOCALAPPDATA\nvim\lua\glizda\packer.lua
+```
+
+Here you'll see all the plugins added to packer. To add another one simply go to the end of file and create new line before `end)` and write
+``` lua
+    use("mainteiner-name/plugin-name")
+```
+Now save file and run
+``` vim
+    :so
+    :PackerSync
+```
+The plugin is now installed but you need one more thing for it to work
+``` PowerShell
+# create a file
+    New-Item $env:LOCALAPPDATA\nvim\after\plugin\plugin-name.lua
+# edit it
+    nvim $env:LOCALAPPDATA\nvim\after\plugin\plugin-name.lua
+```
+Here will be your configuration for this plugin, I'll show the most basic way to use it. For more information check out documentation on the plugin. Now create an object of this plugin and start it:
+
+``` lua
+    local plugin_name = require("plugin-name")
+    plugin_name.setup({
+        -- here place your configuration
+        })
+```
+
 ## Plugins
 
 Plugins are handled by Packer
@@ -194,3 +257,15 @@ Plugins are handled by Packer
  - Incremental search on
  - 24 bit colours
  - Scrolloff 8
+
+## Editing config
+This config is written using atomic design methodology, witch means that it's very easy to find options you want to change.
+
+### Editing key binding
+If you'd like to add, change or remove general bindings just edit `nvim/lua/glizda/remap.lua`(`vim.keymap.set("mode", "bind", "action")`). Here also you can change \<leader\> key (`vim.g.mapleader = "new key"`). And if you'd like to change bindings for plugins go to `nvim/after/` folder and edit file responsible for particular plugin.
+
+### Editing options
+If you'd like to add, change or remove options you can edit `nvim/lua/glizda/set.lua`, here you can find general options for neovim(`vim.opt.option = value`).
+
+## For more information
+If you want to know more about configuring NeoVIM I highly recommend [NeoVIM docs](https://neovim.io/doc/), [ArchWiki](https://wiki.archlinux.org/title/Neovim) and [VIM help](https://vimhelp.org/)
