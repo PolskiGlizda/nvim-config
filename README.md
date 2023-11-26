@@ -131,6 +131,7 @@ Plugins are handled by Packer
 | [uga-rosa/ccc.nvim](https://github.com/uga-rosa/ccc.nvim) | Colour picker |
 | [altermo/ultimate-autopair.nvim](https://github.com/altermo/ultimate-autopair.nvim) | Auto pairing(e.g auto closing brackets) |
 | [ziontee113/icon-picker.nvim](https://github.com/ziontee113/icon-picker.nvim) | Icon picker from Alt-Font/Nerd-Fonts |
+| [edluffy/hologram.nvim](https://github.com/edluffy/hologram.nvim) | Image viewer(currently only supports kitty) |
 | [alec-gibson/nvim-tetris](https://github.com/alec-gibson/nvim-tetris) | Tetris because why not :grinning: |
 
 ## Colour scheme

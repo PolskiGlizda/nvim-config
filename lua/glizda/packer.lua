@@ -78,4 +78,6 @@ return require('packer').startup(function(use)
     use("ziontee113/icon-picker.nvim")
 
     use("alec-gibson/nvim-tetris")
+
+    use("edluffy/hologram.nvim")
 end)
