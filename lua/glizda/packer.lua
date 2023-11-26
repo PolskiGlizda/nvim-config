@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
 	use('williamboman/mason.nvim')
 	use('williamboman/mason-lspconfig.nvim')
 
-    use("zbirenbaum/copilot.lua")
+    use("github/copilot.vim")
 
     use {
         "folke/which-key.nvim",

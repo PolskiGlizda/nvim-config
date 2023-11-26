@@ -1,2 +1,2 @@
-local copilot = require("copilot")
-copilot.setup({})
+-- local copilot = require("copilot")
+-- copilot.setup({})
