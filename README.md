@@ -2,6 +2,8 @@
 
 Simple NeoVIM config written in lua for general-purpose use.
 
+![screenshot](https://github.com/PolskiGlizda/nvim-config/blob/master/pictures/2023-11-26_041527.png)
+
 ## Instalation
 ### Linux/MacOS
 #### Main config
