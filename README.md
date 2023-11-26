@@ -124,7 +124,7 @@ Plugins are handled by Packer
 | [tpope/vim-fugitive](https://github.com/tpope/vim-fugitive) | Handling Git |
 | [VonHeikemen/lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim) | LSP configuration |
 | [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) | LSP manager |
-| [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) | GitHub Copilot integration |
+| [github/copilot.vim](https://github.com/github/copilot.vim) | GitHub Copilot integration |
 | [folke/which-key.nvim](https://github.com/folke/which-key.nvim) | Key bindings helper |
 | [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) | Comment handler |
 | [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) | Colour highlights |
