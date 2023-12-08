@@ -2,7 +2,16 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
-lsp.setup_servers({'lua_ls', 'clangd', 'cmake',})
+lsp.setup_servers({
+        "lua_ls",
+        "clangd",
+        "cmake",
+        "emmet_ls",
+        "cssls",
+        "elmls",
+        "pylsp",
+        "tsserver",
+ })
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
