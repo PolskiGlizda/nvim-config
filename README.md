@@ -1,5 +1,9 @@
 # Neovim Configuration
 
+<a href="https://dotfyle.com/PolskiGlizda/nvim-config"><img src="https://dotfyle.com/PolskiGlizda/nvim-config/badges/plugins?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/PolskiGlizda/nvim-config"><img src="https://dotfyle.com/PolskiGlizda/nvim-config/badges/leaderkey?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/PolskiGlizda/nvim-config"><img src="https://dotfyle.com/PolskiGlizda/nvim-config/badges/plugin-manager?style=for-the-badge" /></a>
+
 A personal Neovim configuration targeting Neovim 0.11+ built around a modern LSP-first workflow with support for web development, systems programming, and scripting.
 
 ---
@@ -27,6 +31,7 @@ Optional but expected:
 ## Installation
 
 > Back up any existing config first:
+>
 > ```sh
 > mv ~/.config/nvim ~/.config/nvim.bak
 > ```
@@ -50,6 +55,7 @@ lazy.nvim bootstraps itself on first launch, then installs all plugins automatic
 Mason installs all configured servers automatically on first launch. You can also open `:Mason` to monitor progress or install servers manually.
 
 > `hls` (Haskell Language Server) is not available through Mason. Install it via GHCup:
+>
 > ```sh
 > ghcup install hls
 > ```
@@ -162,25 +168,25 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 ### Theme & UI (`colorscheme.lua`, `ui.lua`)
 
-| Plugin | Purpose |
-| --- | --- |
-| [`navarasu/onedark.nvim`](https://github.com/navarasu/onedark.nvim) | Colorscheme. Uses the `darker` style. |
-| [`nvim-mini/mini.icons`](https://github.com/echasnovski/mini.icons) | Icon provider used by oil, fzf-lua, lualine, trouble, and render-markdown. |
-| [`folke/noice.nvim`](https://github.com/folke/noice.nvim) | Routes LSP progress and notifications through a styled UI. Cmdline kept at the bottom (`view = "cmdline"`). Hover and signature disabled since those are handled by custom keymap and blink.cmp respectively. |
-| [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim) | Statusline showing mode, branch, diagnostics, filename, encoding, filetype, progress, clock, and cursor position. |
-| [`nvimdev/indentmini.nvim`](https://github.com/nvimdev/indentmini.nvim) | Lightweight indent guides. |
-| [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) | Inline colour previews for hex codes and CSS colour names. |
-| [`letieu/btw.nvim`](https://github.com/letieu/btw.nvim) | Startup message. Displays a cached programming joke fetched from jokeapi.dev. |
+| Plugin                                                                      | Purpose                                                                                                                                                                                                       |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`navarasu/onedark.nvim`](https://github.com/navarasu/onedark.nvim)         | Colorscheme. Uses the `darker` style.                                                                                                                                                                         |
+| [`nvim-mini/mini.icons`](https://github.com/echasnovski/mini.icons)         | Icon provider used by oil, fzf-lua, lualine, trouble, and render-markdown.                                                                                                                                    |
+| [`folke/noice.nvim`](https://github.com/folke/noice.nvim)                   | Routes LSP progress and notifications through a styled UI. Cmdline kept at the bottom (`view = "cmdline"`). Hover and signature disabled since those are handled by custom keymap and blink.cmp respectively. |
+| [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim) | Statusline showing mode, branch, diagnostics, filename, encoding, filetype, progress, clock, and cursor position.                                                                                             |
+| [`nvimdev/indentmini.nvim`](https://github.com/nvimdev/indentmini.nvim)     | Lightweight indent guides.                                                                                                                                                                                    |
+| [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) | Inline colour previews for hex codes and CSS colour names.                                                                                                                                                    |
+| [`letieu/btw.nvim`](https://github.com/letieu/btw.nvim)                     | Startup message. Displays a cached programming joke fetched from jokeapi.dev.                                                                                                                                 |
 
 ### LSP (`lsp.lua`)
 
-| Plugin | Purpose |
-| --- | --- |
-| [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) | Provides default server configurations (root detection, filetypes, cmd). Servers are enabled via `vim.lsp.enable()`. |
-| [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim) | LSP server installer. |
-| [`mason-org/mason-lspconfig.nvim`](https://github.com/mason-org/mason-lspconfig.nvim) | Bridges Mason and lspconfig. `ensure_installed` auto-installs all configured servers on a fresh machine. |
-| [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim) | Neovim Lua API type definitions for `lua_ls`. Scoped to Lua files only (`ft = "lua"`). |
-| [`b0o/schemastore.nvim`](https://github.com/b0o/schemastore.nvim) | Provides the SchemaStore catalog to `jsonls` and `yamlls`. |
+| Plugin                                                                                | Purpose                                                                                                              |
+| ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)                   | Provides default server configurations (root detection, filetypes, cmd). Servers are enabled via `vim.lsp.enable()`. |
+| [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim)                     | LSP server installer.                                                                                                |
+| [`mason-org/mason-lspconfig.nvim`](https://github.com/mason-org/mason-lspconfig.nvim) | Bridges Mason and lspconfig. `ensure_installed` auto-installs all configured servers on a fresh machine.             |
+| [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim)                         | Neovim Lua API type definitions for `lua_ls`. Scoped to Lua files only (`ft = "lua"`).                               |
+| [`b0o/schemastore.nvim`](https://github.com/b0o/schemastore.nvim)                     | Provides the SchemaStore catalog to `jsonls` and `yamlls`.                                                           |
 
 **Enabled servers:**
 
@@ -208,71 +214,71 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 ### Completion (`completion.lua`)
 
-| Plugin | Purpose |
-| --- | --- |
-| [`saghen/blink.cmp`](https://github.com/Saghen/blink.cmp) | Completion engine. Sources: LSP (score 1000), lazydev (score 100), path, snippets, buffer. Rust fuzzy matching enabled. Signature help enabled. |
-| [`rafamadriz/friendly-snippets`](https://github.com/rafamadriz/friendly-snippets) | Snippet collection loaded by blink.cmp. |
+| Plugin                                                                            | Purpose                                                                                                                                         |
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`saghen/blink.cmp`](https://github.com/Saghen/blink.cmp)                         | Completion engine. Sources: LSP (score 1000), lazydev (score 100), path, snippets, buffer. Rust fuzzy matching enabled. Signature help enabled. |
+| [`rafamadriz/friendly-snippets`](https://github.com/rafamadriz/friendly-snippets) | Snippet collection loaded by blink.cmp.                                                                                                         |
 
 ### Formatting & Linting (`formatting.lua`)
 
-| Plugin | Purpose |
-| --- | --- |
-| [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim) | Format on save. Uses `stylua` for Lua, `ruff_format` for Python, `prettier` for web files. Falls back to LSP formatter for any unconfigured filetype. |
-| [`mfussenegger/nvim-lint`](https://github.com/mfussenegger/nvim-lint) | Runs `mypy` on Python files on save and read. Separate from ruff to allow strict mypy type checking alongside fast ruff linting. |
+| Plugin                                                                | Purpose                                                                                                                                               |
+| --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim)   | Format on save. Uses `stylua` for Lua, `ruff_format` for Python, `prettier` for web files. Falls back to LSP formatter for any unconfigured filetype. |
+| [`mfussenegger/nvim-lint`](https://github.com/mfussenegger/nvim-lint) | Runs `mypy` on Python files on save and read. Separate from ruff to allow strict mypy type checking alongside fast ruff linting.                      |
 
 ### Treesitter (`treesitter.lua`)
 
-| Plugin | Purpose |
-| --- | --- |
+| Plugin                                                                                  | Purpose                                                                                          |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting and indentation. Parsers installed for all languages matching the LSP setup. |
-| [`windwp/nvim-ts-autotag`](https://github.com/windwp/nvim-ts-autotag) | Auto-closes and auto-renames HTML/JSX/TSX tags using treesitter. |
+| [`windwp/nvim-ts-autotag`](https://github.com/windwp/nvim-ts-autotag)                   | Auto-closes and auto-renames HTML/JSX/TSX tags using treesitter.                                 |
 
 ### Editor (`editor.lua`)
 
-| Plugin | Purpose |
-| --- | --- |
-| [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs) | Auto-closes brackets and quotes in insert mode. |
-| [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround) | Add, change, and delete surrounding delimiters (brackets, quotes, tags). `ys{motion}{char}` to add, `cs{old}{new}` to change, `ds{char}` to delete. |
-| [`monaqa/dial.nvim`](https://github.com/monaqa/dial.nvim) | Extended increment/decrement. `<C-a>`/`<C-x>` cycles `true`↔`false`, `&&`↔`\|\|`, `const`↔`let`, dates, and semver numbers in addition to integers. |
-| [`tpope/vim-sleuth`](https://github.com/tpope/vim-sleuth) | Automatically detects and sets `tabstop`/`shiftwidth` from the file being edited. Useful when working across projects with different indent conventions. |
-| [`stevearc/dressing.nvim`](https://github.com/stevearc/dressing.nvim) | Replaces `vim.ui.select` and `vim.ui.input` with floating pickers. LSP rename and code action menus use fzf-lua automatically. |
-| [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate) | Highlights all other occurrences of the word/symbol under the cursor using LSP or treesitter. 100ms delay to avoid flashing on fast cursor movement. |
-| [`OXY2DEV/helpview.nvim`](https://github.com/OXY2DEV/helpview.nvim) | Renders `:help` pages with styled markdown-like formatting. Loaded only for help buffers. |
-| [`andymass/vim-matchup`](https://github.com/andymass/vim-matchup) | Extends `%` to match language keywords (`if`/`end`, `function`/`end`, HTML tags) using treesitter. Offscreen matches shown in a popup. |
-| [`folke/ts-comments.nvim`](https://github.com/folke/ts-comments.nvim) | Fixes comment strings in embedded languages. `gc` inside a `<script>` block uses `//`, inside CSS uses `/* */`, inside TSX expressions uses the correct style. |
-| [`danymat/neogen`](https://github.com/danymat/neogen) | Docstring/annotation generator. `<leader>ng` inserts a template for the function or class under the cursor. Python: Google style. TypeScript: JSDoc. Lua: LDoc. Go: godoc. Rust: rustdoc. |
-| [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Renders markdown formatting inline in normal mode. Active for markdown and vimwiki filetypes. |
-| [`kevinhwang91/nvim-ufo`](https://github.com/kevinhwang91/nvim-ufo) | LSP/treesitter-based code folding. Replaces Neovim's unreliable built-in folding. All folds start open (`foldlevel = 99`). |
+| Plugin                                                                                                      | Purpose                                                                                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs)                                         | Auto-closes brackets and quotes in insert mode.                                                                                                                                           |
+| [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround)                                       | Add, change, and delete surrounding delimiters (brackets, quotes, tags). `ys{motion}{char}` to add, `cs{old}{new}` to change, `ds{char}` to delete.                                       |
+| [`monaqa/dial.nvim`](https://github.com/monaqa/dial.nvim)                                                   | Extended increment/decrement. `<C-a>`/`<C-x>` cycles `true`↔`false`, `&&`↔`\|\|`, `const`↔`let`, dates, and semver numbers in addition to integers.                                       |
+| [`tpope/vim-sleuth`](https://github.com/tpope/vim-sleuth)                                                   | Automatically detects and sets `tabstop`/`shiftwidth` from the file being edited. Useful when working across projects with different indent conventions.                                  |
+| [`stevearc/dressing.nvim`](https://github.com/stevearc/dressing.nvim)                                       | Replaces `vim.ui.select` and `vim.ui.input` with floating pickers. LSP rename and code action menus use fzf-lua automatically.                                                            |
+| [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate)                                         | Highlights all other occurrences of the word/symbol under the cursor using LSP or treesitter. 100ms delay to avoid flashing on fast cursor movement.                                      |
+| [`OXY2DEV/helpview.nvim`](https://github.com/OXY2DEV/helpview.nvim)                                         | Renders `:help` pages with styled markdown-like formatting. Loaded only for help buffers.                                                                                                 |
+| [`andymass/vim-matchup`](https://github.com/andymass/vim-matchup)                                           | Extends `%` to match language keywords (`if`/`end`, `function`/`end`, HTML tags) using treesitter. Offscreen matches shown in a popup.                                                    |
+| [`folke/ts-comments.nvim`](https://github.com/folke/ts-comments.nvim)                                       | Fixes comment strings in embedded languages. `gc` inside a `<script>` block uses `//`, inside CSS uses `/* */`, inside TSX expressions uses the correct style.                            |
+| [`danymat/neogen`](https://github.com/danymat/neogen)                                                       | Docstring/annotation generator. `<leader>ng` inserts a template for the function or class under the cursor. Python: Google style. TypeScript: JSDoc. Lua: LDoc. Go: godoc. Rust: rustdoc. |
+| [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Renders markdown formatting inline in normal mode. Active for markdown and vimwiki filetypes.                                                                                             |
+| [`kevinhwang91/nvim-ufo`](https://github.com/kevinhwang91/nvim-ufo)                                         | LSP/treesitter-based code folding. Replaces Neovim's unreliable built-in folding. All folds start open (`foldlevel = 99`).                                                                |
 
 ### Navigation (`navigation.lua`)
 
-| Plugin                           | Purpose                                                                                                                                |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [`ibhagwan/fzf-lua`](https://github.com/ibhagwan/fzf-lua) | Fuzzy finder for files, grep, buffers, recent files, git commits, and LSP symbols.                                   |
-| [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim) | Displays available keybindings in a popup after pressing `<leader>`. Groups configured for `f`, `g`, `t`, `p`, `y` prefixes. |
-| [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim) | File explorer as an editable buffer. Shows icons, file sizes, and hidden files. Git status and LSP diagnostics shown via dependencies. |
-| [`christoomey/vim-tmux-navigator`](https://github.com/christoomey/vim-tmux-navigator) | Seamless pane navigation between Neovim splits and tmux panes using `<C-hjkl>`.             |
-| [`mbbill/undotree`](https://github.com/mbbill/undotree) | Visual undo history tree.                                                                                              |
+| Plugin                                                                                | Purpose                                                                                                                                |
+| ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| [`ibhagwan/fzf-lua`](https://github.com/ibhagwan/fzf-lua)                             | Fuzzy finder for files, grep, buffers, recent files, git commits, and LSP symbols.                                                     |
+| [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim)                     | Displays available keybindings in a popup after pressing `<leader>`. Groups configured for `f`, `g`, `t`, `p`, `y` prefixes.           |
+| [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim)                           | File explorer as an editable buffer. Shows icons, file sizes, and hidden files. Git status and LSP diagnostics shown via dependencies. |
+| [`christoomey/vim-tmux-navigator`](https://github.com/christoomey/vim-tmux-navigator) | Seamless pane navigation between Neovim splits and tmux panes using `<C-hjkl>`.                                                        |
+| [`mbbill/undotree`](https://github.com/mbbill/undotree)                               | Visual undo history tree.                                                                                                              |
 
 ### Git (`git.lua`)
 
-| Plugin                     | Purpose                                                                                                     |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [`lewis6991/gitsigns.nvim`](https://github.com/lewis6991/gitsigns.nvim) | Git hunk indicators in the sign column. Shows added, changed, and removed lines.      |
+| Plugin                                                                    | Purpose                                                                                                     |
+| ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [`lewis6991/gitsigns.nvim`](https://github.com/lewis6991/gitsigns.nvim)   | Git hunk indicators in the sign column. Shows added, changed, and removed lines.                            |
 | [`folke/todo-comments.nvim`](https://github.com/folke/todo-comments.nvim) | Highlights and indexes `TODO`, `FIXME`, `HACK`, `NOTE`, and similar comments. Integrated with trouble.nvim. |
-| [`folke/trouble.nvim`](https://github.com/folke/trouble.nvim) | Diagnostics, LSP references, and TODO list in a structured panel.                             |
+| [`folke/trouble.nvim`](https://github.com/folke/trouble.nvim)             | Diagnostics, LSP references, and TODO list in a structured panel.                                           |
 
 ### TypeScript (`typescript.lua`)
 
-| Plugin                              | Purpose                                                                                                                                                         |
-| ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`pmizio/typescript-tools.nvim`](https://github.com/pmizio/typescript-tools.nvim) | Replaces `ts_ls`. Communicates with tsserver directly for faster performance. Exposes organize imports, add missing imports, and remove unused as code actions. |
-| [`dmmulroy/ts-error-translator.nvim`](https://github.com/dmmulroy/ts-error-translator.nvim) | Translates cryptic TypeScript error messages into plain English. Zero config.                                                            |
+| Plugin                                                                                      | Purpose                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`pmizio/typescript-tools.nvim`](https://github.com/pmizio/typescript-tools.nvim)           | Replaces `ts_ls`. Communicates with tsserver directly for faster performance. Exposes organize imports, add missing imports, and remove unused as code actions. |
+| [`dmmulroy/ts-error-translator.nvim`](https://github.com/dmmulroy/ts-error-translator.nvim) | Translates cryptic TypeScript error messages into plain English. Zero config.                                                                                   |
 
 ### Python (`python.lua`)
 
-| Plugin                             | Purpose                                                                                                                                                                          |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Plugin                                                                                    | Purpose                                                                                                                                                                          |
+| ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`linux-cultist/venv-selector.nvim`](https://github.com/linux-cultist/venv-selector.nvim) | Detects and activates Python virtual environments (uv, Poetry, Pipenv, Conda). Notifies on activation. Required for basedpyright and ruff to resolve project packages correctly. |
 
 ---
@@ -281,23 +287,23 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 Custom snippets live in `snippets/` and are loaded by blink.cmp alongside `friendly-snippets`. Files follow the VSCode JSON format and are matched by filetype name.
 
-| File | Highlights |
-| --- | --- |
-| `python.json` | Main guard, function with Google docstring, dataclass, type alias, list/dict comprehension, uv inline script header |
-| `typescript.json` | Arrow function, async function, interface, type alias, enum, try/catch |
-| `typescriptreact.json` | Functional component with typed props, useState, useEffect, useCallback, useMemo |
-| `javascript.json` | Arrow function, async function, try/catch |
-| `javascriptreact.json` | Functional component, useState, useEffect |
-| `lua.json` | Local function, module pattern, require, LDoc comment, keymap, autocmd |
-| `go.json` | Main, function, method, struct, interface, error check, goroutine, channel, test |
-| `rust.json` | Function, struct, enum, impl, impl trait, match, test module, derive |
-| `c.json` | Main, include guard, typedef struct, for loop, printf |
-| `cpp.json` | Main, class, include guard, namespace, template function, cout |
-| `bash.json` | Shebang with safe defaults, function, if/else, for, while, case, command existence check |
-| `haskell.json` | Module, main, function with type signature, data type, newtype, typeclass instance, import |
-| `zig.json` | Main, function, struct, enum, GPA allocator setup, test, debug print |
-| `html.json` | HTML5 boilerplate, stylesheet link, script tag |
-| `css.json` | Media query, CSS variables, flexbox, grid, keyframes |
+| File                   | Highlights                                                                                                          |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `python.json`          | Main guard, function with Google docstring, dataclass, type alias, list/dict comprehension, uv inline script header |
+| `typescript.json`      | Arrow function, async function, interface, type alias, enum, try/catch                                              |
+| `typescriptreact.json` | Functional component with typed props, useState, useEffect, useCallback, useMemo                                    |
+| `javascript.json`      | Arrow function, async function, try/catch                                                                           |
+| `javascriptreact.json` | Functional component, useState, useEffect                                                                           |
+| `lua.json`             | Local function, module pattern, require, LDoc comment, keymap, autocmd                                              |
+| `go.json`              | Main, function, method, struct, interface, error check, goroutine, channel, test                                    |
+| `rust.json`            | Function, struct, enum, impl, impl trait, match, test module, derive                                                |
+| `c.json`               | Main, include guard, typedef struct, for loop, printf                                                               |
+| `cpp.json`             | Main, class, include guard, namespace, template function, cout                                                      |
+| `bash.json`            | Shebang with safe defaults, function, if/else, for, while, case, command existence check                            |
+| `haskell.json`         | Module, main, function with type signature, data type, newtype, typeclass instance, import                          |
+| `zig.json`             | Main, function, struct, enum, GPA allocator setup, test, debug print                                                |
+| `html.json`            | HTML5 boilerplate, stylesheet link, script tag                                                                      |
+| `css.json`             | Media query, CSS variables, flexbox, grid, keyframes                                                                |
 
 To add your own snippets, create or edit the relevant `snippets/<filetype>.json` file. Any VSCode snippet found online will work directly.
 
@@ -394,9 +400,9 @@ See [blink.cmp default preset](https://cmp.saghen.dev/configuration/keymap.html#
 
 ### Annotations (neogen)
 
-| Key          | Mode   | Action                                        |
-| ------------ | ------ | --------------------------------------------- |
-| `<leader>ng` | normal | Generate docstring for function/class/type    |
+| Key          | Mode   | Action                                     |
+| ------------ | ------ | ------------------------------------------ |
+| `<leader>ng` | normal | Generate docstring for function/class/type |
 
 ### Python
 
