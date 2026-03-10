@@ -183,9 +183,15 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | Plugin | Purpose |
 | --- | --- |
 | [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs) | Auto-closes brackets and quotes in insert mode. |
+| [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround) | Add, change, and delete surrounding delimiters (brackets, quotes, tags). `ys{motion}{char}` to add, `cs{old}{new}` to change, `ds{char}` to delete. |
+| [`monaqa/dial.nvim`](https://github.com/monaqa/dial.nvim) | Extended increment/decrement. `<C-a>`/`<C-x>` cycles `true`↔`false`, `&&`↔`\|\|`, `const`↔`let`, dates, and semver numbers in addition to integers. |
 | [`tpope/vim-sleuth`](https://github.com/tpope/vim-sleuth) | Automatically detects and sets `tabstop`/`shiftwidth` from the file being edited. Useful when working across projects with different indent conventions. |
 | [`stevearc/dressing.nvim`](https://github.com/stevearc/dressing.nvim) | Replaces `vim.ui.select` and `vim.ui.input` with floating pickers. LSP rename and code action menus use fzf-lua automatically. |
 | [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate) | Highlights all other occurrences of the word/symbol under the cursor using LSP or treesitter. 100ms delay to avoid flashing on fast cursor movement. |
+| [`OXY2DEV/helpview.nvim`](https://github.com/OXY2DEV/helpview.nvim) | Renders `:help` pages with styled markdown-like formatting. Loaded only for help buffers. |
+| [`andymass/vim-matchup`](https://github.com/andymass/vim-matchup) | Extends `%` to match language keywords (`if`/`end`, `function`/`end`, HTML tags) using treesitter. Offscreen matches shown in a popup. |
+| [`folke/ts-comments.nvim`](https://github.com/folke/ts-comments.nvim) | Fixes comment strings in embedded languages. `gc` inside a `<script>` block uses `//`, inside CSS uses `/* */`, inside TSX expressions uses the correct style. |
+| [`danymat/neogen`](https://github.com/danymat/neogen) | Docstring/annotation generator. `<leader>ng` inserts a template for the function or class under the cursor. Python: Google style. TypeScript: JSDoc. Lua: LDoc. Go: godoc. Rust: rustdoc. |
 | [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Renders markdown formatting inline in normal mode. Active for markdown and vimwiki filetypes. |
 | [`kevinhwang91/nvim-ufo`](https://github.com/kevinhwang91/nvim-ufo) | LSP/treesitter-based code folding. Replaces Neovim's unreliable built-in folding. All folds start open (`foldlevel = 99`). |
 
@@ -310,6 +316,12 @@ Custom LSP keymaps:
 | `<S-Tab>` | insert | Previous snippet placeholder |
 
 See [blink.cmp default preset](https://cmp.saghen.dev/configuration/keymap.html#default) for the full completion keymap.
+
+### Annotations (neogen)
+
+| Key          | Mode   | Action                                        |
+| ------------ | ------ | --------------------------------------------- |
+| `<leader>ng` | normal | Generate docstring for function/class/type    |
 
 ### Python
 
