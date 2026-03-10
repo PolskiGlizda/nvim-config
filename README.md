@@ -8,6 +8,28 @@ A personal Neovim configuration targeting Neovim 0.11+ built around a modern LSP
 
 ---
 
+## Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Structure](#structure)
+- [Design Decisions](#design-decisions)
+- [Plugins](#plugins)
+  - [Theme & UI](#theme--ui-colorschemelua-uilua)
+  - [LSP](#lsp-lsplua)
+  - [Completion](#completion-completionlua)
+  - [Formatting & Linting](#formatting--linting-formattinglua)
+  - [Treesitter](#treesitter-treesitterlua)
+  - [Editor](#editor-editorlua)
+  - [Navigation](#navigation-navigationlua)
+  - [Git](#git-gitlua)
+  - [TypeScript](#typescript-typescriptlua)
+  - [Python](#python-pythonlua)
+- [Snippets](#snippets)
+- [Keymaps](#keymaps)
+
+---
+
 ## Requirements
 
 - Neovim 0.11+
