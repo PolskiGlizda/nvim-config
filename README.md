@@ -24,6 +24,54 @@ Optional but expected:
 
 ---
 
+## Installation
+
+> Back up any existing config first:
+> ```sh
+> mv ~/.config/nvim ~/.config/nvim.bak
+> ```
+
+**1. Clone the repository**
+
+```sh
+git clone https://github.com/yourusername/nvim-config ~/.config/nvim
+```
+
+**2. Launch Neovim**
+
+```sh
+nvim
+```
+
+lazy.nvim bootstraps itself on first launch, then installs all plugins automatically. Wait for it to finish.
+
+**3. Install LSP servers**
+
+Mason installs all configured servers automatically on first launch. You can also open `:Mason` to monitor progress or install servers manually.
+
+> `hls` (Haskell Language Server) is not available through Mason. Install it via GHCup:
+> ```sh
+> ghcup install hls
+> ```
+
+**4. Install Treesitter parsers**
+
+Parsers install automatically via `ensure_installed` on first launch. To install or update manually:
+
+```
+:TSUpdate
+```
+
+**5. Python type checking**
+
+`mypy` must be installed inside each project's virtual environment. Activate the correct venv with `<leader>vs` before opening Python files, then install mypy in it:
+
+```sh
+uv add --dev mypy
+```
+
+---
+
 ## Structure
 
 ```
