@@ -1,0 +1,59 @@
+{
+  "Console log": {
+    "prefix": "cl",
+    "body": ["console.log($1)$0"],
+    "description": "console.log"
+  },
+  "Console error": {
+    "prefix": "ce",
+    "body": ["console.error($1)$0"],
+    "description": "console.error"
+  },
+  "Arrow function": {
+    "prefix": "fn",
+    "body": ["const ${1:name} = (${2}) => {", "\t$0", "}"],
+    "description": "Arrow function"
+  },
+  "Async arrow function": {
+    "prefix": "afn",
+    "body": ["const ${1:name} = async (${2}) => {", "\t$0", "}"],
+    "description": "Async arrow function"
+  },
+  "Interface": {
+    "prefix": "iface",
+    "body": ["interface ${1:Name} {", "\t${2:key}: ${3:type}$4", "}$0"],
+    "description": "Interface"
+  },
+  "Type alias": {
+    "prefix": "type",
+    "body": ["type ${1:Name} = ${2:type}$0"],
+    "description": "Type alias"
+  },
+  "Enum": {
+    "prefix": "enum",
+    "body": ["enum ${1:Name} {", "\t${2:Value},$3", "}$0"],
+    "description": "Enum"
+  },
+  "Try/catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "\t$1",
+      "} catch (${2:error}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Try/catch block"
+  },
+  "Async try/catch": {
+    "prefix": "atry",
+    "body": [
+      "try {",
+      "\tawait $1",
+      "} catch (${2:error}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Async try/catch block"
+  }
+}

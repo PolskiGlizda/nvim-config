@@ -1,0 +1,55 @@
+{
+  "Main function": {
+    "prefix": "main",
+    "body": [
+      "#include <iostream>",
+      "",
+      "int main(int argc, char* argv[]) {",
+      "\t$0",
+      "\treturn 0;",
+      "}"
+    ],
+    "description": "main function"
+  },
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name} {",
+      "public:",
+      "\t${1:Name}(${2});",
+      "\t~${1:Name}();",
+      "",
+      "private:",
+      "\t$0",
+      "};"
+    ],
+    "description": "Class definition"
+  },
+  "Include guard": {
+    "prefix": "guard",
+    "body": [
+      "#ifndef ${1:HEADER_HPP}",
+      "#define ${1:HEADER_HPP}",
+      "",
+      "$0",
+      "",
+      "#endif // ${1:HEADER_HPP}"
+    ],
+    "description": "Include guard"
+  },
+  "Namespace": {
+    "prefix": "ns",
+    "body": ["namespace ${1:name} {", "", "$0", "", "} // namespace ${1:name}"],
+    "description": "namespace block"
+  },
+  "Template function": {
+    "prefix": "tfn",
+    "body": ["template <typename ${1:T}>", "${2:void} ${3:name}(${4}) {", "\t$0", "}"],
+    "description": "Template function"
+  },
+  "Cout": {
+    "prefix": "co",
+    "body": ["std::cout << ${1} << std::endl;$0"],
+    "description": "std::cout"
+  }
+}

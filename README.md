@@ -31,6 +31,7 @@ Optional but expected:
 ├── init.lua                 entry point
 ├── .luarc.json              lua_ls config scoped to this directory
 ├── lazy-lock.json           plugin version lockfile
+├── snippets/                custom snippets (VSCode format, per filetype)
 └── lua/
     ├── config/
     │   ├── init.lua         loads options → keymaps → lazy
@@ -225,6 +226,32 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | Plugin                             | Purpose                                                                                                                                                                          |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`linux-cultist/venv-selector.nvim`](https://github.com/linux-cultist/venv-selector.nvim) | Detects and activates Python virtual environments (uv, Poetry, Pipenv, Conda). Notifies on activation. Required for basedpyright and ruff to resolve project packages correctly. |
+
+---
+
+## Snippets
+
+Custom snippets live in `snippets/` and are loaded by blink.cmp alongside `friendly-snippets`. Files follow the VSCode JSON format and are matched by filetype name.
+
+| File | Highlights |
+| --- | --- |
+| `python.json` | Main guard, function with Google docstring, dataclass, type alias, list/dict comprehension, uv inline script header |
+| `typescript.json` | Arrow function, async function, interface, type alias, enum, try/catch |
+| `typescriptreact.json` | Functional component with typed props, useState, useEffect, useCallback, useMemo |
+| `javascript.json` | Arrow function, async function, try/catch |
+| `javascriptreact.json` | Functional component, useState, useEffect |
+| `lua.json` | Local function, module pattern, require, LDoc comment, keymap, autocmd |
+| `go.json` | Main, function, method, struct, interface, error check, goroutine, channel, test |
+| `rust.json` | Function, struct, enum, impl, impl trait, match, test module, derive |
+| `c.json` | Main, include guard, typedef struct, for loop, printf |
+| `cpp.json` | Main, class, include guard, namespace, template function, cout |
+| `bash.json` | Shebang with safe defaults, function, if/else, for, while, case, command existence check |
+| `haskell.json` | Module, main, function with type signature, data type, newtype, typeclass instance, import |
+| `zig.json` | Main, function, struct, enum, GPA allocator setup, test, debug print |
+| `html.json` | HTML5 boilerplate, stylesheet link, script tag |
+| `css.json` | Media query, CSS variables, flexbox, grid, keyframes |
+
+To add your own snippets, create or edit the relevant `snippets/<filetype>.json` file. Any VSCode snippet found online will work directly.
 
 ---
 

@@ -1,0 +1,55 @@
+{
+  "Shebang": {
+    "prefix": "she",
+    "body": ["#!/usr/bin/env bash", "set -euo pipefail", "", "$0"],
+    "description": "Bash shebang with safe defaults"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": ["${1:name}() {", "\t$0", "}"],
+    "description": "Function"
+  },
+  "If statement": {
+    "prefix": "if",
+    "body": ["if ${1:condition}; then", "\t$0", "fi"],
+    "description": "if statement"
+  },
+  "If/else": {
+    "prefix": "ife",
+    "body": ["if ${1:condition}; then", "\t$2", "else", "\t$0", "fi"],
+    "description": "if/else statement"
+  },
+  "For loop": {
+    "prefix": "for",
+    "body": ["for ${1:item} in ${2:list}; do", "\t$0", "done"],
+    "description": "for loop"
+  },
+  "While loop": {
+    "prefix": "wh",
+    "body": ["while ${1:condition}; do", "\t$0", "done"],
+    "description": "while loop"
+  },
+  "Case statement": {
+    "prefix": "case",
+    "body": [
+      "case ${1:var} in",
+      "\t${2:pattern})",
+      "\t\t$0",
+      "\t\t;;",
+      "\t*)",
+      "\t\t;;",
+      "esac"
+    ],
+    "description": "case statement"
+  },
+  "Check command exists": {
+    "prefix": "chkcmd",
+    "body": [
+      "if ! command -v ${1:cmd} &>/dev/null; then",
+      "\techo \"${1:cmd} not found\" >&2",
+      "\texit 1",
+      "fi$0"
+    ],
+    "description": "Check if command exists"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "Function": {
+    "prefix": "fn",
+    "body": ["fn ${1:name}(${2}) -> ${3:()} {", "\t$0", "}"],
+    "description": "Function"
+  },
+  "Public function": {
+    "prefix": "pfn",
+    "body": ["pub fn ${1:name}(${2}) -> ${3:()} {", "\t$0", "}"],
+    "description": "Public function"
+  },
+  "Struct": {
+    "prefix": "str",
+    "body": ["struct ${1:Name} {", "\t${2:field}: ${3:type},", "}$0"],
+    "description": "Struct"
+  },
+  "Public struct": {
+    "prefix": "pstr",
+    "body": ["pub struct ${1:Name} {", "\tpub ${2:field}: ${3:type},", "}$0"],
+    "description": "Public struct"
+  },
+  "Enum": {
+    "prefix": "en",
+    "body": ["enum ${1:Name} {", "\t${2:Variant},", "}$0"],
+    "description": "Enum"
+  },
+  "Impl block": {
+    "prefix": "impl",
+    "body": ["impl ${1:Type} {", "\t$0", "}"],
+    "description": "impl block"
+  },
+  "Impl trait": {
+    "prefix": "implt",
+    "body": ["impl ${1:Trait} for ${2:Type} {", "\t$0", "}"],
+    "description": "impl Trait for Type"
+  },
+  "Match": {
+    "prefix": "match",
+    "body": ["match ${1:expr} {", "\t${2:pattern} => $3,", "\t_ => $0,", "}"],
+    "description": "match expression"
+  },
+  "Test module": {
+    "prefix": "testmod",
+    "body": [
+      "#[cfg(test)]",
+      "mod tests {",
+      "\tuse super::*;",
+      "",
+      "\t#[test]",
+      "\tfn ${1:test_name}() {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "Test module"
+  },
+  "Test function": {
+    "prefix": "test",
+    "body": ["#[test]", "fn ${1:test_name}() {", "\t$0", "}"],
+    "description": "Test function"
+  },
+  "Derive": {
+    "prefix": "der",
+    "body": ["#[derive(${1:Debug})]$0"],
+    "description": "#[derive(...)]"
+  }
+}

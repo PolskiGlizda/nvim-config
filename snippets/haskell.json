@@ -1,0 +1,57 @@
+{
+  "Module declaration": {
+    "prefix": "mod",
+    "body": ["module ${1:Main} where", "", "$0"],
+    "description": "Module declaration"
+  },
+  "Main": {
+    "prefix": "main",
+    "body": ["main :: IO ()", "main = do", "\t$0"],
+    "description": "main :: IO ()"
+  },
+  "Function with type signature": {
+    "prefix": "fn",
+    "body": ["${1:name} :: ${2:type}", "${1:name} ${3:args} = $0"],
+    "description": "Function with type signature"
+  },
+  "Data type": {
+    "prefix": "data",
+    "body": ["data ${1:Name} = ${2:Constructor}$0"],
+    "description": "data type"
+  },
+  "Newtype": {
+    "prefix": "newt",
+    "body": ["newtype ${1:Name} = ${1:Name} { un${1:Name} :: ${2:type} }$0"],
+    "description": "newtype"
+  },
+  "Typeclass instance": {
+    "prefix": "inst",
+    "body": ["instance ${1:Class} ${2:Type} where", "\t$0"],
+    "description": "Typeclass instance"
+  },
+  "Do block": {
+    "prefix": "do",
+    "body": ["do", "\t$0"],
+    "description": "do block"
+  },
+  "Let in": {
+    "prefix": "let",
+    "body": ["let ${1:name} = ${2:expr}", "in $0"],
+    "description": "let...in"
+  },
+  "Where clause": {
+    "prefix": "wh",
+    "body": ["where", "\t${1:name} = $0"],
+    "description": "where clause"
+  },
+  "Import": {
+    "prefix": "imp",
+    "body": ["import ${1:Data.List} (${2})$0"],
+    "description": "import"
+  },
+  "Qualified import": {
+    "prefix": "impq",
+    "body": ["import qualified ${1:Data.Map} as ${2:Map}$0"],
+    "description": "qualified import"
+  }
+}

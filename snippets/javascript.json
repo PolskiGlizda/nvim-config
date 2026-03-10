@@ -1,0 +1,33 @@
+{
+  "Console log": {
+    "prefix": "cl",
+    "body": ["console.log($1)$0"],
+    "description": "console.log"
+  },
+  "Console error": {
+    "prefix": "ce",
+    "body": ["console.error($1)$0"],
+    "description": "console.error"
+  },
+  "Arrow function": {
+    "prefix": "fn",
+    "body": ["const ${1:name} = (${2}) => {", "\t$0", "}"],
+    "description": "Arrow function"
+  },
+  "Async arrow function": {
+    "prefix": "afn",
+    "body": ["const ${1:name} = async (${2}) => {", "\t$0", "}"],
+    "description": "Async arrow function"
+  },
+  "Try/catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "\t$1",
+      "} catch (${2:error}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Try/catch block"
+  }
+}

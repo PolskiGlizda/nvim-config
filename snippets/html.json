@@ -1,0 +1,39 @@
+{
+  "HTML5 boilerplate": {
+    "prefix": "doc",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"${1:en}\">",
+      "<head>",
+      "\t<meta charset=\"UTF-8\">",
+      "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "\t<title>${2:Title}</title>",
+      "</head>",
+      "<body>",
+      "\t$0",
+      "</body>",
+      "</html>"
+    ],
+    "description": "HTML5 boilerplate"
+  },
+  "Link stylesheet": {
+    "prefix": "css",
+    "body": ["<link rel=\"stylesheet\" href=\"${1:styles.css}\">$0"],
+    "description": "Link stylesheet"
+  },
+  "Script": {
+    "prefix": "script",
+    "body": ["<script src=\"${1:script.js}\"${2: defer}></script>$0"],
+    "description": "Script tag"
+  },
+  "Figure": {
+    "prefix": "fig",
+    "body": [
+      "<figure>",
+      "\t<img src=\"${1:src}\" alt=\"${2:alt}\">",
+      "\t<figcaption>$3</figcaption>",
+      "</figure>$0"
+    ],
+    "description": "Figure with caption"
+  }
+}

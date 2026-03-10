@@ -1,0 +1,63 @@
+{
+  "Main function": {
+    "prefix": "main",
+    "body": [
+      "const std = @import(\"std\");",
+      "",
+      "pub fn main() !void {",
+      "\t$0",
+      "}"
+    ],
+    "description": "main with std import"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": ["fn ${1:name}(${2}) ${3:void} {", "\t$0", "}"],
+    "description": "Function"
+  },
+  "Public function": {
+    "prefix": "pfn",
+    "body": ["pub fn ${1:name}(${2}) ${3:void} {", "\t$0", "}"],
+    "description": "Public function"
+  },
+  "Struct": {
+    "prefix": "str",
+    "body": [
+      "const ${1:Name} = struct {",
+      "\t${2:field}: ${3:type},",
+      "",
+      "\t$0",
+      "};"
+    ],
+    "description": "Struct"
+  },
+  "Enum": {
+    "prefix": "en",
+    "body": ["const ${1:Name} = enum {", "\t${2:variant},", "}$0"],
+    "description": "Enum"
+  },
+  "Error union": {
+    "prefix": "eu",
+    "body": ["${1:Error}!${2:type}$0"],
+    "description": "Error union type"
+  },
+  "Allocator": {
+    "prefix": "alloc",
+    "body": [
+      "var gpa = std.heap.GeneralPurposeAllocator(.{}){};",
+      "defer _ = gpa.deinit();",
+      "const allocator = gpa.allocator();$0"
+    ],
+    "description": "GPA allocator setup"
+  },
+  "Test": {
+    "prefix": "test",
+    "body": ["test \"${1:description}\" {", "\t$0", "}"],
+    "description": "Test block"
+  },
+  "Print": {
+    "prefix": "pr",
+    "body": ["std.debug.print(\"${1}\\n\", .{${2}});$0"],
+    "description": "std.debug.print"
+  }
+}

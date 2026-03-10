@@ -1,0 +1,55 @@
+{
+  "Main function": {
+    "prefix": "main",
+    "body": [
+      "#include <stdio.h>",
+      "",
+      "int main(int argc, char *argv[]) {",
+      "\t$0",
+      "\treturn 0;",
+      "}"
+    ],
+    "description": "main function with includes"
+  },
+  "Include guard": {
+    "prefix": "guard",
+    "body": [
+      "#ifndef ${1:HEADER_H}",
+      "#define ${1:HEADER_H}",
+      "",
+      "$0",
+      "",
+      "#endif // ${1:HEADER_H}"
+    ],
+    "description": "Include guard"
+  },
+  "Include": {
+    "prefix": "inc",
+    "body": ["#include <${1:stdio.h}>$0"],
+    "description": "#include <>"
+  },
+  "Include local": {
+    "prefix": "incl",
+    "body": ["#include \"${1:header.h}\"$0"],
+    "description": "#include \"\""
+  },
+  "Struct": {
+    "prefix": "str",
+    "body": [
+      "typedef struct {",
+      "\t${1:type} ${2:field};",
+      "} ${3:Name};$0"
+    ],
+    "description": "typedef struct"
+  },
+  "For loop": {
+    "prefix": "for",
+    "body": ["for (${1:int i} = 0; ${2:i < n}; ${3:i++}) {", "\t$0", "}"],
+    "description": "for loop"
+  },
+  "Printf": {
+    "prefix": "pr",
+    "body": ["printf(\"${1:%s}\\n\"${2:, $3});$0"],
+    "description": "printf"
+  }
+}

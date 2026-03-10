@@ -1,0 +1,82 @@
+{
+  "Main guard": {
+    "prefix": "main",
+    "body": ["if __name__ == \"__main__\":", "\t$0"],
+    "description": "if __name__ == '__main__' guard"
+  },
+  "Function with docstring": {
+    "prefix": "def",
+    "body": [
+      "def ${1:name}(${2}) -> ${3:None}:",
+      "\t\"\"\"${4:Summary.}",
+      "",
+      "\tArgs:",
+      "\t\t${5:arg}: ${6:Description.}",
+      "",
+      "\tReturns:",
+      "\t\t${7:Description.}",
+      "\t\"\"\"",
+      "\t$0"
+    ],
+    "description": "Function with Google docstring"
+  },
+  "Class with docstring": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name}:",
+      "\t\"\"\"${2:Summary.}",
+      "",
+      "\tAttributes:",
+      "\t\t${3:attr}: ${4:Description.}",
+      "\t\"\"\"",
+      "",
+      "\tdef __init__(self${5:, ${6:arg}: ${7:type}}) -> None:",
+      "\t\t$0"
+    ],
+    "description": "Class with Google docstring"
+  },
+  "Dataclass": {
+    "prefix": "dc",
+    "body": [
+      "from dataclasses import dataclass",
+      "",
+      "",
+      "@dataclass",
+      "class ${1:Name}:",
+      "\t${2:field}: ${3:type}$0"
+    ],
+    "description": "Dataclass"
+  },
+  "Type alias": {
+    "prefix": "type",
+    "body": ["type ${1:Name} = ${2:type}$0"],
+    "description": "Type alias (Python 3.12+)"
+  },
+  "Context manager": {
+    "prefix": "with",
+    "body": ["with ${1:expr} as ${2:var}:", "\t$0"],
+    "description": "with statement"
+  },
+  "List comprehension": {
+    "prefix": "lc",
+    "body": ["[${1:expr} for ${2:item} in ${3:iterable}$4]$0"],
+    "description": "List comprehension"
+  },
+  "Dict comprehension": {
+    "prefix": "dcomp",
+    "body": ["{${1:key}: ${2:value} for ${3:item} in ${4:iterable}$5}$0"],
+    "description": "Dict comprehension"
+  },
+  "uv inline script header": {
+    "prefix": "uvscript",
+    "body": [
+      "# /// script",
+      "# requires-python = \"${1:>=3.12}\"",
+      "# dependencies = [",
+      "#   \"${2:package}\",",
+      "# ]",
+      "# ///"
+    ],
+    "description": "uv inline script metadata header"
+  }
+}

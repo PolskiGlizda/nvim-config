@@ -1,0 +1,49 @@
+{
+  "Media query": {
+    "prefix": "mq",
+    "body": ["@media (${1:min-width: 768px}) {", "\t$0", "}"],
+    "description": "Media query"
+  },
+  "CSS variable": {
+    "prefix": "var",
+    "body": ["--${1:name}: ${2:value};$0"],
+    "description": "CSS custom property"
+  },
+  "Root variables": {
+    "prefix": "root",
+    "body": [":root {", "\t--${1:name}: ${2:value};", "\t$0", "}"],
+    "description": ":root variables block"
+  },
+  "Flexbox container": {
+    "prefix": "flex",
+    "body": [
+      "display: flex;",
+      "align-items: ${1:center};",
+      "justify-content: ${2:center};$0"
+    ],
+    "description": "Flexbox container"
+  },
+  "Grid container": {
+    "prefix": "grid",
+    "body": [
+      "display: grid;",
+      "grid-template-columns: ${1:repeat(3, 1fr)};",
+      "gap: ${2:1rem};$0"
+    ],
+    "description": "Grid container"
+  },
+  "Keyframes": {
+    "prefix": "kf",
+    "body": [
+      "@keyframes ${1:name} {",
+      "\tfrom {",
+      "\t\t$2",
+      "\t}",
+      "\tto {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "@keyframes"
+  }
+}

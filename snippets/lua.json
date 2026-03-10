@@ -1,0 +1,45 @@
+{
+  "Local function": {
+    "prefix": "fn",
+    "body": ["local function ${1:name}(${2})", "\t$0", "end"],
+    "description": "Local function"
+  },
+  "Module": {
+    "prefix": "mod",
+    "body": ["local M = {}", "", "$0", "", "return M"],
+    "description": "Module pattern"
+  },
+  "Require": {
+    "prefix": "req",
+    "body": ["local ${1:name} = require(\"${2:module}\")$0"],
+    "description": "require"
+  },
+  "LDoc function comment": {
+    "prefix": "ldoc",
+    "body": [
+      "---${1:Summary.}",
+      "---@param ${2:param} ${3:type}",
+      "---@return ${4:type}"
+    ],
+    "description": "LDoc function annotation"
+  },
+  "Vim keymap": {
+    "prefix": "km",
+    "body": [
+      "vim.keymap.set(\"${1:n}\", \"${2:keys}\", ${3:action}, { desc = \"${4:Description}\" })$0"
+    ],
+    "description": "vim.keymap.set"
+  },
+  "Autocmd": {
+    "prefix": "au",
+    "body": [
+      "vim.api.nvim_create_autocmd(\"${1:event}\", {",
+      "\tpattern = \"${2:*}\",",
+      "\tcallback = function(${3:ev})",
+      "\t\t$0",
+      "\tend,",
+      "})"
+    ],
+    "description": "vim.api.nvim_create_autocmd"
+  }
+}

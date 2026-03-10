@@ -1,0 +1,52 @@
+{
+  "Main package": {
+    "prefix": "main",
+    "body": ["package main", "", "func main() {", "\t$0", "}"],
+    "description": "main package and function"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": ["func ${1:name}(${2}) ${3:error} {", "\t$0", "}"],
+    "description": "Function"
+  },
+  "Method": {
+    "prefix": "meth",
+    "body": ["func (${1:r} *${2:Receiver}) ${3:Name}(${4}) ${5:error} {", "\t$0", "}"],
+    "description": "Method"
+  },
+  "Struct": {
+    "prefix": "str",
+    "body": ["type ${1:Name} struct {", "\t${2:Field} ${3:type}", "}$0"],
+    "description": "Struct"
+  },
+  "Interface": {
+    "prefix": "iface",
+    "body": ["type ${1:Name} interface {", "\t${2:Method}(${3}) ${4:error}", "}$0"],
+    "description": "Interface"
+  },
+  "Error check": {
+    "prefix": "iferr",
+    "body": ["if err != nil {", "\treturn ${1:nil, }err", "}$0"],
+    "description": "if err != nil"
+  },
+  "Error wrap": {
+    "prefix": "errw",
+    "body": ["if err != nil {", "\treturn ${1:nil, }fmt.Errorf(\"${2}: %w\", err)", "}$0"],
+    "description": "if err != nil with fmt.Errorf wrap"
+  },
+  "Goroutine": {
+    "prefix": "gor",
+    "body": ["go func() {", "\t$0", "}()"],
+    "description": "Anonymous goroutine"
+  },
+  "Channel": {
+    "prefix": "ch",
+    "body": ["${1:ch} := make(chan ${2:type}${3:, ${4:1}})$0"],
+    "description": "make channel"
+  },
+  "Test function": {
+    "prefix": "test",
+    "body": ["func Test${1:Name}(t *testing.T) {", "\t$0", "}"],
+    "description": "Test function"
+  }
+}
