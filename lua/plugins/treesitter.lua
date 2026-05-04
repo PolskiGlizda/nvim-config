@@ -6,7 +6,7 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
+			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
 		},
 		init = function()
 			vim.api.nvim_create_autocmd("FileType", {

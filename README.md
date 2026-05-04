@@ -61,7 +61,7 @@ Optional but expected:
 **1. Clone the repository**
 
 ```sh
-git clone https://github.com/yourusername/nvim-config ~/.config/nvim
+git clone https://github.com/PolskiGlizda/nvim-config ~/.config/nvim
 ```
 
 **2. Launch Neovim**
@@ -212,27 +212,27 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 **Enabled servers:**
 
-| Server                     | Language                                     |
-| -------------------------- | -------------------------------------------- |
-| `hls`                      | Haskell (installed via GHCup, not Mason)     |
-| `rust-analyzer`            | Rust                                         |
-| `gopls`                    | Go                                           |
-| `clangd`                   | C / C++                                      |
-| `zls`                      | Zig                                          |
-| `asm_lsp`                  | Assembly                                     |
-| `vtsls`                    | TypeScript / JavaScript (see typescript.lua) |
-| `tailwindcss`              | Tailwind CSS                                 |
-| `emmet_language_server`    | HTML / JSX Emmet                             |
-| `cssls`                    | CSS                                          |
-| `html`                     | HTML                                         |
-| `htmx`                     | HTMX (HTML only)                             |
-| `bashls`                   | Bash                                         |
-| `lua_ls`                   | Lua                                          |
-| `vimls`                    | Vimscript (used when maintaining `.vimrc`)   |
-| `basedpyright`             | Python (navigation only, type checking off)  |
-| `ruff`                     | Python (linting via LSP)                     |
-| `jsonls`                   | JSON                                         |
-| `yamlls`                   | YAML                                         |
+| Server                  | Language                                     |
+| ----------------------- | -------------------------------------------- |
+| `hls`                   | Haskell (installed via GHCup, not Mason)     |
+| `rust-analyzer`         | Rust                                         |
+| `gopls`                 | Go                                           |
+| `clangd`                | C / C++                                      |
+| `zls`                   | Zig                                          |
+| `asm_lsp`               | Assembly                                     |
+| `vtsls`                 | TypeScript / JavaScript (see typescript.lua) |
+| `tailwindcss`           | Tailwind CSS                                 |
+| `emmet_language_server` | HTML / JSX Emmet                             |
+| `cssls`                 | CSS                                          |
+| `html`                  | HTML                                         |
+| `htmx`                  | HTMX (HTML only)                             |
+| `bashls`                | Bash                                         |
+| `lua_ls`                | Lua                                          |
+| `vimls`                 | Vimscript (used when maintaining `.vimrc`)   |
+| `basedpyright`          | Python (navigation only, type checking off)  |
+| `ruff`                  | Python (linting via LSP)                     |
+| `jsonls`                | JSON                                         |
+| `yamlls`                | YAML                                         |
 
 ### Completion (`completion.lua`)
 
@@ -292,19 +292,19 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 ### TypeScript (`typescript.lua`)
 
-| Key   | Action                   |
-| ----- | ------------------------ |
-| `grO` | Organize Imports         |
-| `grU` | Remove Unused Imports    |
-| `grM` | Add Missing Imports      |
-| `grF` | Fix All Diagnostics      |
-| `grR` | Rename File              |
-| `gs`  | Go to Source Definition  |
+| Key   | Action                  |
+| ----- | ----------------------- |
+| `grO` | Organize Imports        |
+| `grU` | Remove Unused Imports   |
+| `grM` | Add Missing Imports     |
+| `grF` | Fix All Diagnostics     |
+| `grR` | Rename File             |
+| `gs`  | Go to Source Definition |
 
-| Plugin                                                                                      | Purpose                                                                                                                                                            |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Plugin                                                                                      | Purpose                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`yioneko/nvim-vtsls`](https://github.com/yioneko/nvim-vtsls)                               | Replaces `ts_ls`. Provides a high-performance wrapper around the TypeScript Language Server with support for organizing imports, fixing all, and renaming files. |
-| [`dmmulroy/ts-error-translator.nvim`](https://github.com/dmmulroy/ts-error-translator.nvim) | Translates cryptic TypeScript error messages into plain English. Zero config.                                                                                      |
+| [`dmmulroy/ts-error-translator.nvim`](https://github.com/dmmulroy/ts-error-translator.nvim) | Translates cryptic TypeScript error messages into plain English. Zero config.                                                                                    |
 
 ### Python (`python.lua`)
 
@@ -449,6 +449,6 @@ See [blink.cmp default preset](https://cmp.saghen.dev/configuration/keymap.html#
 - `mypy` must be installed in the active virtual environment for nvim-lint to find it. Activate the correct venv with `<leader>vs` before opening Python files.
 - Treesitter parsers install automatically on first launch via `ensure_installed`. This may take a moment.
 - All LSP servers in `ensure_installed` are auto-installed by Mason on first launch except `hls`.
-on files.
+  on files.
 - Treesitter parsers install automatically on first launch via `ensure_installed`. This may take a moment.
 - All LSP servers in `ensure_installed` are auto-installed by Mason on first launch except `hls`.
