@@ -220,7 +220,7 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | `clangd`                   | C / C++                                      |
 | `zls`                      | Zig                                          |
 | `asm_lsp`                  | Assembly                                     |
-| `ts_ls` / typescript-tools | TypeScript / JavaScript (see typescript.lua) |
+| `vtsls`                    | TypeScript / JavaScript (see typescript.lua) |
 | `tailwindcss`              | Tailwind CSS                                 |
 | `emmet_language_server`    | HTML / JSX Emmet                             |
 | `cssls`                    | CSS                                          |
@@ -397,7 +397,7 @@ Custom LSP keymaps:
 | `<leader>td` | normal | Project-wide diagnostics |
 | `<leader>tb` | normal | Buffer diagnostics       |
 | `<leader>ts` | normal | Symbol outline           |
-| `<leader>tr` | normal | LSP references           |
+| `grr`        | normal | LSP references           |
 | `<leader>tt` | normal | TODO / FIXME list        |
 
 ### Folding (nvim-ufo)
@@ -438,5 +438,8 @@ See [blink.cmp default preset](https://cmp.saghen.dev/configuration/keymap.html#
 
 - `hls` (Haskell Language Server) must be installed via GHCup — it is not available through Mason. It is still enabled via `vim.lsp.enable("hls")` and will work as long as it is on `$PATH`.
 - `mypy` must be installed in the active virtual environment for nvim-lint to find it. Activate the correct venv with `<leader>vs` before opening Python files.
+- Treesitter parsers install automatically on first launch via `ensure_installed`. This may take a moment.
+- All LSP servers in `ensure_installed` are auto-installed by Mason on first launch except `hls`.
+on files.
 - Treesitter parsers install automatically on first launch via `ensure_installed`. This may take a moment.
 - All LSP servers in `ensure_installed` are auto-installed by Mason on first launch except `hls`.

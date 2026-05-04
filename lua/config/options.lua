@@ -7,7 +7,6 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.smartindent = true
 
 --- persistent undo, no swap or backup files
 vim.opt.swapfile = false
@@ -27,6 +26,8 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.cmdheight = 1
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = "nc"
 
 --- reduce latency for cursorhold events (affects gitsigns, hover)
 vim.opt.updatetime = 250

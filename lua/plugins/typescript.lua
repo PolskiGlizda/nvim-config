@@ -1,26 +1,24 @@
 ---@type LazySpec
 return {
-    {
-        "pmizio/typescript-tools.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig", "saghen/blink.cmp" },
-        ---@return TSToolsOptions
-        opts = function()
-            return {
-                capabilities = require("blink.cmp").get_lsp_capabilities(),
-                settings = {
-                    expose_as_code_action = "all",
-                    tsserver_file_preferences = {
-                        includeInlayParameterNameHints = "all",
-                        includeInlayReturnTypeHints = true,
-                        --- skip hints when name already matches type
-                        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-                    },
-                },
-            }
-        end,
-    },
-    {
-        "dmmulroy/ts-error-translator.nvim",
-        opts = {},
-    },
+	{
+		"yioneko/nvim-vtsls",
+		dependencies = { "neovim/nvim-lspconfig", "saghen/blink.cmp" },
+		ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+		config = function()
+			--- plugin provides commands like :VtslsRenameFile
+			require("vtsls")
+		end,
+		keys = {
+			{ "grO", "<cmd>VtslsOrganizeImports<cr>", desc = "Organize Imports" },
+			{ "grU", "<cmd>VtslsRemoveUnused<cr>", desc = "Remove Unused Imports" },
+			{ "grM", "<cmd>VtslsAddMissingImports<cr>", desc = "Add Missing Imports" },
+			{ "grF", "<cmd>VtslsFixAll<cr>", desc = "Fix All Diagnostics" },
+			{ "grR", "<cmd>VtslsRenameFile<cr>", desc = "Rename File" },
+			{ "gs", "<cmd>VtslsGotoSourceDefinition<cr>", desc = "Go to Source" },
+		},
+	},
+	{
+		"dmmulroy/ts-error-translator.nvim",
+		opts = {},
+	},
 }
