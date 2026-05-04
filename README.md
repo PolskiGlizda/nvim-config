@@ -292,10 +292,19 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 ### TypeScript (`typescript.lua`)
 
-| Plugin                                                                                      | Purpose                                                                                                                                                         |
-| ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`pmizio/typescript-tools.nvim`](https://github.com/pmizio/typescript-tools.nvim)           | Replaces `ts_ls`. Communicates with tsserver directly for faster performance. Exposes organize imports, add missing imports, and remove unused as code actions. |
-| [`dmmulroy/ts-error-translator.nvim`](https://github.com/dmmulroy/ts-error-translator.nvim) | Translates cryptic TypeScript error messages into plain English. Zero config.                                                                                   |
+| Key   | Action                   |
+| ----- | ------------------------ |
+| `grO` | Organize Imports         |
+| `grU` | Remove Unused Imports    |
+| `grM` | Add Missing Imports      |
+| `grF` | Fix All Diagnostics      |
+| `grR` | Rename File              |
+| `gs`  | Go to Source Definition  |
+
+| Plugin                                                                                      | Purpose                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`yioneko/nvim-vtsls`](https://github.com/yioneko/nvim-vtsls)                               | Replaces `ts_ls`. Provides a high-performance wrapper around the TypeScript Language Server with support for organizing imports, fixing all, and renaming files. |
+| [`dmmulroy/ts-error-translator.nvim`](https://github.com/dmmulroy/ts-error-translator.nvim) | Translates cryptic TypeScript error messages into plain English. Zero config.                                                                                      |
 
 ### Python (`python.lua`)
 
