@@ -72,9 +72,9 @@ nvim
 
 lazy.nvim bootstraps itself on first launch, then installs all plugins automatically. Wait for it to finish.
 
-**3. Install LSP servers**
+**3. Install LSP servers & Tools**
 
-Mason installs all configured servers automatically on first launch. You can also open `:Mason` to monitor progress or install servers manually.
+Mason installs all configured servers and tools automatically on first launch via `mason-tool-installer`. You can also open `:Mason` to monitor progress or install tools manually.
 
 > `hls` (Haskell Language Server) is not available through Mason. Install it via GHCup:
 >
@@ -152,9 +152,13 @@ conform is async-first, supports format-on-save natively, and has a clean `lsp_f
 
 Oil treats the file explorer as an editable buffer. Directory contents can be manipulated with standard Vim motions — rename with `r`, delete with `dd`, move with cut/paste. This is more ergonomic than a sidebar tree.
 
-### typescript-tools.nvim over ts_ls
+### vtsls over ts_ls
 
-typescript-tools communicates with `tsserver` directly, bypassing the LSP translation layer that `ts_ls` adds. This results in significantly faster completions and diagnostics on large TypeScript projects. It also exposes TypeScript-specific code actions (organise imports, add missing imports, go to source definition) that `ts_ls` does not provide.
+Uses `vtsls` (via `nvim-vtsls`) for TypeScript support. It is faster than `ts_ls`, provides better refactoring tools, and supports advanced TypeScript features like "Go to Source Definition" and "Organize Imports" natively through LSP commands. `ts_ls` is explicitly disabled to prevent auto-attach conflicts in Neovim 0.13.
+
+### Manual Treesitter activation
+
+Instead of a standard `setup()` call, Treesitter is started manually via a `FileType` autocmd. This ensures that the Treesitter highlighter and indentation engine are only initialized when needed, providing a snappier experience when opening non-code files or very large buffers.
 
 ### basedpyright + ruff + mypy
 
@@ -198,17 +202,19 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim) | Statusline showing mode, branch, diagnostics, filename, encoding, filetype, progress, clock, and cursor position.                                                                                             |
 | [`nvimdev/indentmini.nvim`](https://github.com/nvimdev/indentmini.nvim)     | Lightweight indent guides.                                                                                                                                                                                    |
 | [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) | Inline colour previews for hex codes and CSS colour names.                                                                                                                                                    |
+| [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Renders markdown formatting inline in normal mode. Active for markdown and vimwiki filetypes.                                                                                             |
 | [`letieu/btw.nvim`](https://github.com/letieu/btw.nvim)                     | Startup message. Displays a cached programming joke fetched from jokeapi.dev.                                                                                                                                 |
 
 ### LSP (`lsp.lua`)
 
-| Plugin                                                                                | Purpose                                                                                                              |
-| ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)                   | Provides default server configurations (root detection, filetypes, cmd). Servers are enabled via `vim.lsp.enable()`. |
-| [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim)                     | LSP server installer.                                                                                                |
-| [`mason-org/mason-lspconfig.nvim`](https://github.com/mason-org/mason-lspconfig.nvim) | Bridges Mason and lspconfig. `ensure_installed` auto-installs all configured servers on a fresh machine.             |
-| [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim)                         | Neovim Lua API type definitions for `lua_ls`. Scoped to Lua files only (`ft = "lua"`).                               |
-| [`b0o/schemastore.nvim`](https://github.com/b0o/schemastore.nvim)                     | Provides the SchemaStore catalog to `jsonls` and `yamlls`.                                                           |
+| Plugin                                                                                             | Purpose                                                                                                              |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)                                | Provides default server configurations (root detection, filetypes, cmd). Servers are enabled via `vim.lsp.enable()`. |
+| [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim)                                  | LSP server installer.                                                                                                |
+| [`WhoIsSethPueblo/mason-tool-installer.nvim`](https://github.com/WhoIsSethPueblo/mason-tool-installer.nvim) | Automates installation of LSPs, formatters, and linters.                                                             |
+| [`mason-org/mason-lspconfig.nvim`](https://github.com/mason-org/mason-lspconfig.nvim)              | Bridges Mason and lspconfig. `ensure_installed` auto-installs all configured servers on a fresh machine.             |
+| [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim)                                      | Neovim Lua API type definitions for `lua_ls`. Scoped to Lua files only (`ft = "lua"`).                               |
+| [`b0o/schemastore.nvim`](https://github.com/b0o/schemastore.nvim)                                  | Provides the SchemaStore catalog to `jsonls` and `yamlls`.                                                           |
 
 **Enabled servers:**
 
@@ -233,6 +239,7 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | `ruff`                  | Python (linting via LSP)                     |
 | `jsonls`                | JSON                                         |
 | `yamlls`                | YAML                                         |
+| `terraform-ls`          | Terraform                                    |
 
 ### Completion (`completion.lua`)
 
@@ -257,20 +264,19 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 ### Editor (`editor.lua`)
 
-| Plugin                                                                                                      | Purpose                                                                                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs)                                         | Auto-closes brackets and quotes in insert mode.                                                                                                                                           |
-| [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround)                                       | Add, change, and delete surrounding delimiters (brackets, quotes, tags). `ys{motion}{char}` to add, `cs{old}{new}` to change, `ds{char}` to delete.                                       |
-| [`monaqa/dial.nvim`](https://github.com/monaqa/dial.nvim)                                                   | Extended increment/decrement. `<C-a>`/`<C-x>` cycles `true`↔`false`, `&&`↔`\|\|`, `const`↔`let`, dates, and semver numbers in addition to integers.                                       |
-| [`tpope/vim-sleuth`](https://github.com/tpope/vim-sleuth)                                                   | Automatically detects and sets `tabstop`/`shiftwidth` from the file being edited. Useful when working across projects with different indent conventions.                                  |
-| [`stevearc/dressing.nvim`](https://github.com/stevearc/dressing.nvim)                                       | Replaces `vim.ui.select` and `vim.ui.input` with floating pickers. LSP rename and code action menus use fzf-lua automatically.                                                            |
-| [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate)                                         | Highlights all other occurrences of the word/symbol under the cursor using LSP or treesitter. 100ms delay to avoid flashing on fast cursor movement.                                      |
-| [`OXY2DEV/helpview.nvim`](https://github.com/OXY2DEV/helpview.nvim)                                         | Renders `:help` pages with styled markdown-like formatting. Loaded only for help buffers.                                                                                                 |
-| [`andymass/vim-matchup`](https://github.com/andymass/vim-matchup)                                           | Extends `%` to match language keywords (`if`/`end`, `function`/`end`, HTML tags) using treesitter. Offscreen matches shown in a popup.                                                    |
-| [`folke/ts-comments.nvim`](https://github.com/folke/ts-comments.nvim)                                       | Fixes comment strings in embedded languages. `gc` inside a `<script>` block uses `//`, inside CSS uses `/* */`, inside TSX expressions uses the correct style.                            |
-| [`danymat/neogen`](https://github.com/danymat/neogen)                                                       | Docstring/annotation generator. `<leader>ng` inserts a template for the function or class under the cursor. Python: Google style. TypeScript: JSDoc. Lua: LDoc. Go: godoc. Rust: rustdoc. |
-| [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Renders markdown formatting inline in normal mode. Active for markdown and vimwiki filetypes.                                                                                             |
-| [`kevinhwang91/nvim-ufo`](https://github.com/kevinhwang91/nvim-ufo)                                         | LSP/treesitter-based code folding. Replaces Neovim's unreliable built-in folding. All folds start open (`foldlevel = 99`).                                                                |
+| Plugin                                                                                              | Purpose                                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs)                                 | Auto-closes brackets and quotes in insert mode.                                                                                                                                           |
+| [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround)                               | Add, change, and delete surrounding delimiters (brackets, quotes, tags). `ys{motion}{char}` to add, `cs{old}{new}` to change, `ds{char}` to delete.                                       |
+| [`monaqa/dial.nvim`](https://github.com/monaqa/dial.nvim)                                           | Extended increment/decrement. `<C-a>`/`<C-x>` cycles `true`↔`false`, `&&`↔`\|\|`, `const`↔`let`, dates, and semver numbers in addition to integers.                                       |
+| [`chrisgrieser/nvim-spider`](https://github.com/chrisgrieser/nvim-spider)                           | Subword motions for `w`, `e`, `b`, and `ge`. Works with camelCase and snake_case out of the box.                                                                                         |
+| [`tpope/vim-sleuth`](https://github.com/tpope/vim-sleuth)                                           | Automatically detects and sets `tabstop`/`shiftwidth` from the file being edited. Useful when working across projects with different indent conventions.                                  |
+| [`stevearc/dressing.nvim`](https://github.com/stevearc/dressing.nvim)                               | Replaces `vim.ui.select` and `vim.ui.input` with floating pickers. LSP rename and code action menus use fzf-lua automatically.                                                            |
+| [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate)                                 | Highlights all other occurrences of the word/symbol under the cursor using LSP or treesitter. 100ms delay to avoid flashing on fast cursor movement.                                      |
+| [`andymass/vim-matchup`](https://github.com/andymass/vim-matchup)                                   | Extends `%` to match language keywords (`if`/`end`, `function`/`end`, HTML tags) using treesitter. Offscreen matches shown in a popup.                                                    |
+| [`folke/ts-comments.nvim`](https://github.com/folke/ts-comments.nvim)                               | Fixes comment strings in embedded languages. `gc` inside a `<script>` block uses `//`, inside CSS uses `/* */`, inside TSX expressions uses the correct style.                            |
+| [`danymat/neogen`](https://github.com/danymat/neogen)                                               | Docstring/annotation generator. `<leader>ng` inserts a template for the function or class under the cursor. Python: Google style. TypeScript: JSDoc. Lua: LDoc. Go: godoc. Rust: rustdoc. |
+| [`kevinhwang91/nvim-ufo`](https://github.com/kevinhwang91/nvim-ufo)                                 | LSP/treesitter-based code folding. Replaces Neovim's unreliable built-in folding. All folds start open (`foldlevel = 99`).                                                                |
 
 ### Navigation (`navigation.lua`)
 
@@ -352,8 +358,8 @@ To add your own snippets, create or edit the relevant `snippets/<filetype>.json`
 | `<leader>y` | normal / visual | Copy to system clipboard                                              |
 | `<leader>Y` | normal          | Copy line to system clipboard                                         |
 | `<leader>s` | normal          | Replace word under cursor across the file (opens substitution prompt) |
-| `<leader>x` | normal          | Make current file executable (`chmod +x`)                             |
-| `<leader>u` | normal          | Toggle undo tree                                                      |
+| `<leader>x" | normal          | Make current file executable (`chmod +x`)                             |
+| `<leader>u" | normal          | Toggle undo tree                                                      |
 
 ### Navigation
 
@@ -374,7 +380,7 @@ To add your own snippets, create or edit the relevant `snippets/<filetype>.json`
 | `<leader>fb` | normal | Open buffers         |
 | `<leader>fr` | normal | Recent files         |
 | `<leader>fc` | normal | Git commits          |
-| `<leader>fs` | normal | LSP document symbols |
+| `gO`         | normal | LSP document symbols |
 
 ### LSP
 
@@ -448,7 +454,4 @@ See [blink.cmp default preset](https://cmp.saghen.dev/configuration/keymap.html#
 - `hls` (Haskell Language Server) must be installed via GHCup — it is not available through Mason. It is still enabled via `vim.lsp.enable("hls")` and will work as long as it is on `$PATH`.
 - `mypy` must be installed in the active virtual environment for nvim-lint to find it. Activate the correct venv with `<leader>vs` before opening Python files.
 - Treesitter parsers install automatically on first launch via `ensure_installed`. This may take a moment.
-- All LSP servers in `ensure_installed` are auto-installed by Mason on first launch except `hls`.
-  on files.
-- Treesitter parsers install automatically on first launch via `ensure_installed`. This may take a moment.
-- All LSP servers in `ensure_installed` are auto-installed by Mason on first launch except `hls`.
+- All LSP servers and tools in `ensure_installed` (including formatters and linters) are auto-installed by Mason on first launch via `mason-tool-installer`.

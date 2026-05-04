@@ -126,6 +126,43 @@ return {
 		end,
 	},
 	{
+		"WhoIsSethPueblo/mason-tool-installer.nvim",
+		dependencies = { "mason-org/mason.nvim" },
+		config = function()
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					-- LSPs
+					"rust-analyzer",
+					"gopls",
+					"tailwindcss-language-server",
+					"emmet-language-server",
+					"bash-language-server",
+					"clangd",
+					"vscode-css-language-server",
+					"vscode-html-language-server",
+					"htmx-lsp",
+					"lua-language-server",
+					"basedpyright",
+					"ruff",
+					"zls",
+					"asm-lsp",
+					"vim-language-server",
+					"vscode-json-language-server",
+					"yaml-language-server",
+					"terraform-ls",
+					"vtsls",
+					-- Formatters
+					"stylua",
+					"prettier",
+					-- Linters
+					"mypy",
+				},
+				auto_update = true,
+				run_on_start = true,
+			})
+		end,
+	},
+	{
 		"mason-org/mason-lspconfig.nvim",
 		dependencies = { "mason-org/mason.nvim" },
 		opts = {
