@@ -45,12 +45,7 @@ return {
 			})
 
 			-- explicitly disable ts_ls (which often auto-attaches in 0.13)
-			vim.lsp.config("ts_ls", {
-				enabled = false,
-				handlers = {
-					["textDocument/publishDiagnostics"] = function() end,
-				},
-			})
+			vim.lsp.enable("ts_ls", false)
 
 			-- web
 			vim.lsp.enable("tailwindcss")
@@ -104,6 +99,61 @@ return {
 				},
 			})
 			vim.lsp.enable("prismals")
+
+			-- lsp keymaps not covered by 0.11 defaults (gd, gt) + gri which-key label
+			-- + document colour swatches for supporting servers (cssls, tailwindcss, html, vtsls)
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(args)
+					local bufnr = args.buf
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
+					vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Go to type definition" })
+					vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Go to implementation" })
+
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client and client:supports_method("textDocument/documentColor") then
+						vim.lsp.document_color.enable(true, bufnr)
+					end
+
+					if client and client:supports_method("textDocument/documentHighlight") then
+						local group = vim.api.nvim_create_augroup("lsp_highlight_" .. bufnr, { clear = true })
+						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+							buffer = bufnr,
+							group = group,
+							callback = vim.lsp.buf.document_highlight,
+						})
+						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+							buffer = bufnr,
+							group = group,
+							callback = vim.lsp.buf.clear_references,
+						})
+					end
+
+					if client and client:supports_method("textDocument/declaration") then
+						vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go to declaration" })
+					end
+
+					if client and client:supports_method("codeLens/resolve") then
+						local group = vim.api.nvim_create_augroup("lsp_codelens_" .. bufnr, { clear = true })
+						vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
+							buffer = bufnr,
+							group = group,
+							callback = function() vim.lsp.codelens.refresh({ bufnr = bufnr }) end,
+						})
+						vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run code lens" })
+					end
+
+					if client and client:supports_method("callHierarchy/incomingCalls") then
+						local fzf = require("fzf-lua")
+						vim.keymap.set("n", "<leader>ci", fzf.lsp_incoming_calls, { buffer = bufnr, desc = "Incoming calls" })
+						vim.keymap.set("n", "<leader>co", fzf.lsp_outgoing_calls, { buffer = bufnr, desc = "Outgoing calls" })
+					end
+
+					if client and client:supports_method("typeHierarchy/supertypes") then
+						vim.keymap.set("n", "<leader>cs", function() vim.lsp.buf.typehierarchy("supertypes") end, { buffer = bufnr, desc = "Supertypes" })
+						vim.keymap.set("n", "<leader>cd", function() vim.lsp.buf.typehierarchy("subtypes") end, { buffer = bufnr, desc = "Subtypes" })
+					end
+				end,
+			})
 
 			-- enable inlay hints globally with toggle
 			vim.lsp.inlay_hint.enable()
@@ -167,29 +217,7 @@ return {
 	{
 		"mason-org/mason-lspconfig.nvim",
 		dependencies = { "mason-org/mason.nvim" },
-		opts = {
-			ensure_installed = {
-				"rust_analyzer",
-				"gopls",
-				"tailwindcss",
-				"emmet_language_server",
-				"bashls",
-				"clangd",
-				"cssls",
-				"html",
-				"htmx",
-				"lua_ls",
-				"basedpyright",
-				"ruff",
-				"zls",
-				"asm_lsp",
-				"vimls",
-				"jsonls",
-				"yamlls",
-				"terraformls",
-				"vtsls",
-			},
-		},
+		opts = {},
 	},
 	{
 		"mason-org/mason.nvim",

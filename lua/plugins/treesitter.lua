@@ -66,10 +66,10 @@ return {
 
 					-- movement
 					vim.keymap.set("n", "]f", function()
-						move.goto_next_start("@function.outer", "python", bufnr)
+						move.goto_next_start("@function.outer", nil, bufnr)
 					end, { buffer = bufnr })
 					vim.keymap.set("n", "[f", function()
-						move.goto_previous_start("@function.outer", "python", bufnr)
+						move.goto_previous_start("@function.outer", nil, bufnr)
 					end, { buffer = bufnr })
 				end,
 			})

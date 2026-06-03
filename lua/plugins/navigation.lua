@@ -11,6 +11,7 @@ return {
 		config = function(_, opts)
 			local fzf = require("fzf-lua")
 			fzf.setup(opts)
+			fzf.register_ui_select()
 			vim.keymap.set("n", "<leader>ff", fzf.files, { desc = "Files" })
 			vim.keymap.set("n", "<leader>fg", fzf.live_grep, { desc = "Grep" })
 			vim.keymap.set("n", "<leader>fb", fzf.buffers, { desc = "Buffers" })
@@ -18,6 +19,7 @@ return {
 			vim.keymap.set("n", "<leader>fc", fzf.git_commits, { desc = "Git commits" })
 			vim.keymap.set("n", "gO", fzf.lsp_document_symbols, { desc = "Document symbols" })
 			vim.keymap.set("n", "gra", fzf.lsp_code_actions, { desc = "Code actions" })
+			vim.keymap.set("n", "<leader>fS", fzf.lsp_live_workspace_symbols, { desc = "Workspace symbols" })
 		end,
 	},
 	{
@@ -30,6 +32,7 @@ return {
 				{ "<leader>t", group = "trouble" },
 				{ "<leader>p", group = "project" },
 				{ "<leader>y", group = "yank" },
+				{ "<leader>c", group = "code" },
 			},
 		},
 	},

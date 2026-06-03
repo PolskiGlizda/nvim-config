@@ -4,7 +4,7 @@
 <a href="https://dotfyle.com/PolskiGlizda/nvim-config"><img src="https://dotfyle.com/PolskiGlizda/nvim-config/badges/leaderkey?style=for-the-badge" /></a>
 <a href="https://dotfyle.com/PolskiGlizda/nvim-config"><img src="https://dotfyle.com/PolskiGlizda/nvim-config/badges/plugin-manager?style=for-the-badge" /></a>
 
-A personal Neovim configuration targeting Neovim 0.11+ built around a modern LSP-first workflow with support for web development, systems programming, and scripting.
+A personal Neovim configuration targeting Neovim 0.12+ built around a modern LSP-first workflow with support for web development, systems programming, and scripting.
 
 ---
 
@@ -32,7 +32,7 @@ A personal Neovim configuration targeting Neovim 0.11+ built around a modern LSP
 
 ## Requirements
 
-- Neovim 0.11+ (0.12+ for refactoring.nvim)
+- Neovim 0.12+ (uses `vim.lsp.document_color`, `vim.diagnostic.jump`)
 - [lazy.nvim](https://github.com/folke/lazy.nvim) (auto-installed on first launch)
 - A [Nerd Font](https://www.nerdfonts.com/) for icons
 - `git` for plugin management
@@ -210,7 +210,7 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`navarasu/onedark.nvim`](https://github.com/navarasu/onedark.nvim)                                         | Colorscheme. Uses the `darker` style.                                                                                                                                                                         |
 | [`nvim-mini/mini.icons`](https://github.com/echasnovski/mini.icons)                                         | Icon provider used by oil, fzf-lua, lualine, trouble, and render-markdown.                                                                                                                                    |
-| [`folke/noice.nvim`](https://github.com/folke/noice.nvim)                                                   | Routes LSP progress and notifications through a styled UI. Cmdline kept at the bottom (`view = "cmdline"`). Hover and signature disabled since those are handled by custom keymap and blink.cmp respectively. |
+| [`folke/noice.nvim`](https://github.com/folke/noice.nvim)                                                   | Routes LSP progress, notifications, and `vim.ui.input` prompts (rename, etc.) through a styled floating UI. Cmdline kept at the bottom (`view = "cmdline"`).                                                  |
 | [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim)                                 | Statusline showing mode, branch, diagnostics, filename, encoding, filetype, progress, clock, and cursor position.                                                                                             |
 | [`nvimdev/indentmini.nvim`](https://github.com/nvimdev/indentmini.nvim)                                     | Lightweight indent guides.                                                                                                                                                                                    |
 | [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua)                                 | Inline colour previews for hex codes and CSS colour names.                                                                                                                                                    |
@@ -224,7 +224,7 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)                                         | Provides default server configurations (root detection, filetypes, cmd). Servers are enabled via `vim.lsp.enable()`. |
 | [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim)                                           | LSP server installer.                                                                                                |
 | [`WhoIsSethPueblo/mason-tool-installer.nvim`](https://github.com/WhoIsSethPueblo/mason-tool-installer.nvim) | Automates installation of LSPs, formatters, and linters.                                                             |
-| [`mason-org/mason-lspconfig.nvim`](https://github.com/mason-org/mason-lspconfig.nvim)                       | Bridges Mason and lspconfig. `ensure_installed` auto-installs all configured servers on a fresh machine.             |
+| [`mason-org/mason-lspconfig.nvim`](https://github.com/mason-org/mason-lspconfig.nvim)                       | Bridges Mason and lspconfig. Server installation is handled exclusively by `mason-tool-installer`.                   |
 | [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim)                                               | Neovim Lua API type definitions for `lua_ls`. Scoped to Lua files only (`ft = "lua"`).                               |
 | [`b0o/schemastore.nvim`](https://github.com/b0o/schemastore.nvim)                                           | Provides the SchemaStore catalog to `jsonls` and `yamlls`.                                                           |
 
@@ -287,8 +287,6 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | [`MagicDuck/grug-far.nvim`](https://github.com/MagicDuck/grug-far.nvim)             | Project-wide search and replace in a dedicated buffer. Fast, visual, and highly configurable.                                                                                             |
 | [`chrisgrieser/nvim-spider`](https://github.com/chrisgrieser/nvim-spider)           | Subword motions for `w`, `e`, `b`, and `ge`. Works with camelCase and snake_case out of the box.                                                                                          |
 | [`tpope/vim-sleuth`](https://github.com/tpope/vim-sleuth)                           | Automatically detects and sets `tabstop`/`shiftwidth` from the file being edited. Useful when working across projects with different indent conventions.                                  |
-| [`stevearc/dressing.nvim`](https://github.com/stevearc/dressing.nvim)               | Replaces `vim.ui.select` and `vim.ui.input` with floating pickers. LSP rename and code action menus use fzf-lua automatically.                                                            |
-| [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate)                 | Highlights all other occurrences of the word/symbol under the cursor using LSP or treesitter. 100ms delay to avoid flashing on fast cursor movement.                                      |
 | [`andymass/vim-matchup`](https://github.com/andymass/vim-matchup)                   | Extends `%` to match language keywords (`if`/`end`, `function`/`end`, HTML tags) using treesitter. Offscreen matches shown in a popup.                                                    |
 | [`folke/ts-comments.nvim`](https://github.com/folke/ts-comments.nvim)               | Fixes comment strings in embedded languages. `gc` inside a `<script>` block uses `//`, inside CSS uses `/* */`, inside TSX expressions uses the correct style.                            |
 | [`danymat/neogen`](https://github.com/danymat/neogen)                               | Docstring/annotation generator. `<leader>ng` inserts a template for the function or class under the cursor. Python: Google style. TypeScript: JSDoc. Lua: LDoc. Go: godoc. Rust: rustdoc. |
@@ -298,7 +296,7 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 | Plugin                                                                                | Purpose                                                                                                                                |
 | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [`ibhagwan/fzf-lua`](https://github.com/ibhagwan/fzf-lua)                             | Fuzzy finder for files, grep, buffers, recent files, git commits, and LSP symbols.                                                     |
+| [`ibhagwan/fzf-lua`](https://github.com/ibhagwan/fzf-lua)                             | Fuzzy finder for files, grep, buffers, recent files, git commits, and LSP symbols. Registered as the `vim.ui.select` provider for code actions and other picker prompts.                 |
 | [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim)                     | Displays available keybindings in a popup after pressing `<leader>`. Groups configured for `f`, `g`, `t`, `p`, `y` prefixes.           |
 | [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim)                           | File explorer as an editable buffer. Shows icons, file sizes, and hidden files. Git status and LSP diagnostics shown via dependencies. |
 | [`christoomey/vim-tmux-navigator`](https://github.com/christoomey/vim-tmux-navigator) | Seamless pane navigation between Neovim splits and tmux panes using `<C-hjkl>`.                                                        |
@@ -394,32 +392,39 @@ To add your own snippets, create or edit the relevant `snippets/<filetype>.json`
 | `<leader>ff` | normal | Find files           |
 | `<leader>fg` | normal | Live grep            |
 | `<leader>fb` | normal | Open buffers         |
-| `<leader>fr` | normal | Recent files         |
-| `<leader>fc` | normal | Git commits          |
-| `gO`         | normal | LSP document symbols |
+| `<leader>fr` | normal | Recent files              |
+| `<leader>fc` | normal | Git commits               |
+| `<leader>fS` | normal | Workspace symbols (live)  |
+| `gO`         | normal | LSP document symbols      |
 
 ### LSP
 
-The following are set automatically by Neovim 0.10+ on `LspAttach`:
+Set automatically by Neovim 0.11 on `LspAttach`:
 
-| Key     | Mode   | Action                |
-| ------- | ------ | --------------------- |
-| `K`     | normal | Hover documentation   |
-| `gd`    | normal | Go to definition      |
-| `gD`    | normal | Go to declaration     |
-| `grr`   | normal | References            |
-| `gri`   | normal | Go to implementation  |
-| `grt`   | normal | Go to type definition |
-| `grn`   | normal | Rename symbol         |
-| `gra`   | normal | Code action           |
-| `<C-s>` | insert | Signature help        |
+| Key     | Mode   | Action              |
+| ------- | ------ | ------------------- |
+| `K`     | normal | Hover documentation |
+| `grn`   | normal | Rename symbol       |
+| `<C-s>` | insert | Signature help      |
 
-Custom LSP keymaps:
+Configured in this config (some override 0.11 defaults):
 
-| Key          | Mode   | Action                |
-| ------------ | ------ | --------------------- |
-| `<leader>ih` | normal | Toggle inlay hints    |
-| `<leader>gf` | normal | Format current buffer |
+| Key           | Mode   | Action                                               |
+| ------------- | ------ | ---------------------------------------------------- |
+| `gd`          | normal | Go to definition                                     |
+| `gD`          | normal | Go to declaration (clangd only)                      |
+| `gt`          | normal | Go to type definition                                |
+| `gri`         | normal | Go to implementation                                 |
+| `grr`         | normal | References → Trouble panel                           |
+| `gra`         | normal | Code actions → fzf-lua                               |
+| `gO`          | normal | Document symbols → fzf-lua                           |
+| `<leader>ih`  | normal | Toggle inlay hints                                   |
+| `<leader>gf`  | normal | Format current buffer                                |
+| `<leader>cl`  | normal | Run code lens under cursor (gopls, rust-analyzer, clangd) |
+| `<leader>ci`  | normal | Incoming calls → fzf-lua                             |
+| `<leader>co`  | normal | Outgoing calls → fzf-lua                             |
+| `<leader>cs`  | normal | Type supertypes                                      |
+| `<leader>cd`  | normal | Type subtypes                                        |
 
 ### Refactoring
 
@@ -436,10 +441,16 @@ Custom LSP keymaps:
 
 | Key          | Mode   | Action                   |
 | ------------ | ------ | ------------------------ |
+| `]d`         | normal | Next diagnostic          |
+| `[d`         | normal | Previous diagnostic      |
+| `]e`         | normal | Next error               |
+| `[e`         | normal | Previous error           |
+| `]w`         | normal | Next warning             |
+| `[w`         | normal | Previous warning         |
+| `gl`         | normal | Open diagnostic float    |
 | `<leader>td` | normal | Project-wide diagnostics |
 | `<leader>tb` | normal | Buffer diagnostics       |
 | `<leader>ts` | normal | Symbol outline           |
-| `grr`        | normal | LSP references           |
 | `<leader>tt` | normal | TODO / FIXME list        |
 
 ### Treesitter Textobjects

@@ -27,6 +27,7 @@ return {
 				view = "cmdline",
 			},
 			messages = { enabled = true },
+			input = { enabled = true },
 			popupmenu = { enabled = false },
 			notify = { enabled = true },
 			lsp = {
@@ -36,8 +37,7 @@ return {
 				message = { enabled = true },
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.extract_stack_trace"] = true,
-					["renderer.lsp.hover.markdown"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
 				},
 			},
 			presets = {

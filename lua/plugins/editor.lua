@@ -184,19 +184,6 @@ return {
 		"tpope/vim-sleuth",
 	},
 	{
-		"stevearc/dressing.nvim",
-		opts = {},
-	},
-	{
-		"RRethy/vim-illuminate",
-		config = function()
-			require("illuminate").configure({
-				providers = { "lsp", "treesitter" },
-				delay = 100,
-			})
-		end,
-	},
-	{
 		"folke/ts-comments.nvim",
 		event = "VeryLazy",
 		opts = {},
