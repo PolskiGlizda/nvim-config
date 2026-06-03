@@ -10,9 +10,9 @@ return {
 				formatters_by_ft = {
 					python = { "ruff_format" },
 					lua = { "stylua" },
-					typescript = { "prettier" },
+					typescript = { "biome" },
 					javascript = { "prettier" },
-					typescriptreact = { "prettier" },
+					typescriptreact = { "biome" },
 					javascriptreact = { "prettier" },
 					css = { "prettier" },
 					html = { "prettier" },

@@ -103,6 +103,7 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable("prismals")
 
 			-- enable inlay hints globally with toggle
 			vim.lsp.inlay_hint.enable()
@@ -116,17 +117,17 @@ return {
 				update_in_insert = false,
 				signs = {
 					text = {
-						[vim.diagnostic.severity.ERROR] = "",
-						[vim.diagnostic.severity.WARN] = "",
-						[vim.diagnostic.severity.INFO] = "",
-						[vim.diagnostic.severity.HINT] = "󱠃",
+						[vim.diagnostic.severity.ERROR] = require("mini.icons").get("lsp", "error"),
+						[vim.diagnostic.severity.WARN] = require("mini.icons").get("lsp", "warning"),
+						[vim.diagnostic.severity.INFO] = require("mini.icons").get("lsp", "information"),
+						[vim.diagnostic.severity.HINT] = require("mini.icons").get("lsp", "hint"),
 					},
 				},
 			})
 		end,
 	},
 	{
-		"WhoIsSethPueblo/mason-tool-installer.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = { "mason-org/mason.nvim" },
 		config = function()
 			require("mason-tool-installer").setup({
@@ -138,8 +139,8 @@ return {
 					"emmet-language-server",
 					"bash-language-server",
 					"clangd",
-					"vscode-css-language-server",
-					"vscode-html-language-server",
+					"cssls",
+					"html",
 					"htmx-lsp",
 					"lua-language-server",
 					"basedpyright",
@@ -147,10 +148,11 @@ return {
 					"zls",
 					"asm-lsp",
 					"vim-language-server",
-					"vscode-json-language-server",
+					"jsonls",
 					"yaml-language-server",
 					"terraform-ls",
 					"vtsls",
+					"prismals",
 					-- Formatters
 					"stylua",
 					"prettier",

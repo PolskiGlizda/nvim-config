@@ -32,7 +32,7 @@ A personal Neovim configuration targeting Neovim 0.11+ built around a modern LSP
 
 ## Requirements
 
-- Neovim 0.11+
+- Neovim 0.11+ (0.12+ for refactoring.nvim)
 - [lazy.nvim](https://github.com/folke/lazy.nvim) (auto-installed on first launch)
 - A [Nerd Font](https://www.nerdfonts.com/) for icons
 - `git` for plugin management
@@ -160,6 +160,18 @@ Uses `vtsls` (via `nvim-vtsls`) for TypeScript support. It is faster than `ts_ls
 
 Instead of a standard `setup()` call, Treesitter is started manually via a `FileType` autocmd. This ensures that the Treesitter highlighter and indentation engine are only initialized when needed, providing a snappier experience when opening non-code files or very large buffers.
 
+### grug-far.nvim for search & replace
+
+Replaces standard substitution with a dedicated buffer-based search and replace tool. This provides a visual, editable interface for project-wide refactoring that is safer and more intuitive than the command line.
+
+### Refactoring.nvim with previews
+
+Leverages the latest `:Refactor` command interface to provide live previews of structural changes like function extraction or variable inlining.
+
+### Bigfile optimization
+
+Automatically detects and optimizes the editor environment for files larger than 2MiB by disabling Treesitter, LSP, and other heavy features.
+
 ### basedpyright + ruff + mypy
 
 Three tools with distinct roles:
@@ -194,27 +206,27 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 ### Theme & UI (`colorscheme.lua`, `ui.lua`)
 
-| Plugin                                                                      | Purpose                                                                                                                                                                                                       |
-| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`navarasu/onedark.nvim`](https://github.com/navarasu/onedark.nvim)         | Colorscheme. Uses the `darker` style.                                                                                                                                                                         |
-| [`nvim-mini/mini.icons`](https://github.com/echasnovski/mini.icons)         | Icon provider used by oil, fzf-lua, lualine, trouble, and render-markdown.                                                                                                                                    |
-| [`folke/noice.nvim`](https://github.com/folke/noice.nvim)                   | Routes LSP progress and notifications through a styled UI. Cmdline kept at the bottom (`view = "cmdline"`). Hover and signature disabled since those are handled by custom keymap and blink.cmp respectively. |
-| [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim) | Statusline showing mode, branch, diagnostics, filename, encoding, filetype, progress, clock, and cursor position.                                                                                             |
-| [`nvimdev/indentmini.nvim`](https://github.com/nvimdev/indentmini.nvim)     | Lightweight indent guides.                                                                                                                                                                                    |
-| [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua) | Inline colour previews for hex codes and CSS colour names.                                                                                                                                                    |
-| [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Renders markdown formatting inline in normal mode. Active for markdown and vimwiki filetypes.                                                                                             |
-| [`letieu/btw.nvim`](https://github.com/letieu/btw.nvim)                     | Startup message. Displays a cached programming joke fetched from jokeapi.dev.                                                                                                                                 |
+| Plugin                                                                                                      | Purpose                                                                                                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`navarasu/onedark.nvim`](https://github.com/navarasu/onedark.nvim)                                         | Colorscheme. Uses the `darker` style.                                                                                                                                                                         |
+| [`nvim-mini/mini.icons`](https://github.com/echasnovski/mini.icons)                                         | Icon provider used by oil, fzf-lua, lualine, trouble, and render-markdown.                                                                                                                                    |
+| [`folke/noice.nvim`](https://github.com/folke/noice.nvim)                                                   | Routes LSP progress and notifications through a styled UI. Cmdline kept at the bottom (`view = "cmdline"`). Hover and signature disabled since those are handled by custom keymap and blink.cmp respectively. |
+| [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim)                                 | Statusline showing mode, branch, diagnostics, filename, encoding, filetype, progress, clock, and cursor position.                                                                                             |
+| [`nvimdev/indentmini.nvim`](https://github.com/nvimdev/indentmini.nvim)                                     | Lightweight indent guides.                                                                                                                                                                                    |
+| [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua)                                 | Inline colour previews for hex codes and CSS colour names.                                                                                                                                                    |
+| [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Renders markdown formatting inline in normal mode. Active for markdown and vimwiki filetypes.                                                                                                                 |
+| [`letieu/btw.nvim`](https://github.com/letieu/btw.nvim)                                                     | Startup message. Displays a cached programming joke fetched from jokeapi.dev.                                                                                                                                 |
 
 ### LSP (`lsp.lua`)
 
-| Plugin                                                                                             | Purpose                                                                                                              |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)                                | Provides default server configurations (root detection, filetypes, cmd). Servers are enabled via `vim.lsp.enable()`. |
-| [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim)                                  | LSP server installer.                                                                                                |
+| Plugin                                                                                                      | Purpose                                                                                                              |
+| ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)                                         | Provides default server configurations (root detection, filetypes, cmd). Servers are enabled via `vim.lsp.enable()`. |
+| [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim)                                           | LSP server installer.                                                                                                |
 | [`WhoIsSethPueblo/mason-tool-installer.nvim`](https://github.com/WhoIsSethPueblo/mason-tool-installer.nvim) | Automates installation of LSPs, formatters, and linters.                                                             |
-| [`mason-org/mason-lspconfig.nvim`](https://github.com/mason-org/mason-lspconfig.nvim)              | Bridges Mason and lspconfig. `ensure_installed` auto-installs all configured servers on a fresh machine.             |
-| [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim)                                      | Neovim Lua API type definitions for `lua_ls`. Scoped to Lua files only (`ft = "lua"`).                               |
-| [`b0o/schemastore.nvim`](https://github.com/b0o/schemastore.nvim)                                  | Provides the SchemaStore catalog to `jsonls` and `yamlls`.                                                           |
+| [`mason-org/mason-lspconfig.nvim`](https://github.com/mason-org/mason-lspconfig.nvim)                       | Bridges Mason and lspconfig. `ensure_installed` auto-installs all configured servers on a fresh machine.             |
+| [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim)                                               | Neovim Lua API type definitions for `lua_ls`. Scoped to Lua files only (`ft = "lua"`).                               |
+| [`b0o/schemastore.nvim`](https://github.com/b0o/schemastore.nvim)                                           | Provides the SchemaStore catalog to `jsonls` and `yamlls`.                                                           |
 
 **Enabled servers:**
 
@@ -245,7 +257,7 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 | Plugin                                                                            | Purpose                                                                                                                                         |
 | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`saghen/blink.cmp`](https://github.com/Saghen/blink.cmp)                         | Completion engine. Sources: LSP (score 1000), lazydev (score 100), path, snippets, buffer. Rust fuzzy matching enabled. Signature help enabled. |
+| [`saghen/blink.cmp`](https://github.com/saghen/blink.cmp)                         | Completion engine. Sources: LSP (score 1000), lazydev (score 100), path, snippets, buffer. Rust fuzzy matching enabled. Signature help enabled. |
 | [`rafamadriz/friendly-snippets`](https://github.com/rafamadriz/friendly-snippets) | Snippet collection loaded by blink.cmp.                                                                                                         |
 
 ### Formatting & Linting (`formatting.lua`)
@@ -257,26 +269,30 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 ### Treesitter (`treesitter.lua`)
 
-| Plugin                                                                                  | Purpose                                                                                          |
-| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting and indentation. Parsers installed for all languages matching the LSP setup. |
-| [`windwp/nvim-ts-autotag`](https://github.com/windwp/nvim-ts-autotag)                   | Auto-closes and auto-renames HTML/JSX/TSX tags using treesitter.                                 |
+| Plugin                                                                                                          | Purpose                                                                                          |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter)                         | Syntax highlighting and indentation. Parsers installed for all languages matching the LSP setup. |
+| [`nvim-treesitter/nvim-treesitter-textobjects`](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) | Provides structural selection and movement (functions, classes, etc.) using treesitter queries.  |
+| [`windwp/nvim-ts-autotag`](https://github.com/windwp/nvim-ts-autotag)                                           | Auto-closes and auto-renames HTML/JSX/TSX tags using treesitter.                                 |
 
 ### Editor (`editor.lua`)
 
-| Plugin                                                                                              | Purpose                                                                                                                                                                                   |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs)                                 | Auto-closes brackets and quotes in insert mode.                                                                                                                                           |
-| [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround)                               | Add, change, and delete surrounding delimiters (brackets, quotes, tags). `ys{motion}{char}` to add, `cs{old}{new}` to change, `ds{char}` to delete.                                       |
-| [`monaqa/dial.nvim`](https://github.com/monaqa/dial.nvim)                                           | Extended increment/decrement. `<C-a>`/`<C-x>` cycles `true`↔`false`, `&&`↔`\|\|`, `const`↔`let`, dates, and semver numbers in addition to integers.                                       |
-| [`chrisgrieser/nvim-spider`](https://github.com/chrisgrieser/nvim-spider)                           | Subword motions for `w`, `e`, `b`, and `ge`. Works with camelCase and snake_case out of the box.                                                                                         |
-| [`tpope/vim-sleuth`](https://github.com/tpope/vim-sleuth)                                           | Automatically detects and sets `tabstop`/`shiftwidth` from the file being edited. Useful when working across projects with different indent conventions.                                  |
-| [`stevearc/dressing.nvim`](https://github.com/stevearc/dressing.nvim)                               | Replaces `vim.ui.select` and `vim.ui.input` with floating pickers. LSP rename and code action menus use fzf-lua automatically.                                                            |
-| [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate)                                 | Highlights all other occurrences of the word/symbol under the cursor using LSP or treesitter. 100ms delay to avoid flashing on fast cursor movement.                                      |
-| [`andymass/vim-matchup`](https://github.com/andymass/vim-matchup)                                   | Extends `%` to match language keywords (`if`/`end`, `function`/`end`, HTML tags) using treesitter. Offscreen matches shown in a popup.                                                    |
-| [`folke/ts-comments.nvim`](https://github.com/folke/ts-comments.nvim)                               | Fixes comment strings in embedded languages. `gc` inside a `<script>` block uses `//`, inside CSS uses `/* */`, inside TSX expressions uses the correct style.                            |
-| [`danymat/neogen`](https://github.com/danymat/neogen)                                               | Docstring/annotation generator. `<leader>ng` inserts a template for the function or class under the cursor. Python: Google style. TypeScript: JSDoc. Lua: LDoc. Go: godoc. Rust: rustdoc. |
-| [`kevinhwang91/nvim-ufo`](https://github.com/kevinhwang91/nvim-ufo)                                 | LSP/treesitter-based code folding. Replaces Neovim's unreliable built-in folding. All folds start open (`foldlevel = 99`).                                                                |
+| Plugin                                                                              | Purpose                                                                                                                                                                                   |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`windwp/nvim-autopairs`](https://github.com/windwp/nvim-autopairs)                 | Auto-closes brackets and quotes in insert mode.                                                                                                                                           |
+| [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround)               | Add, change, and delete surrounding delimiters (brackets, quotes, tags). `ys{motion}{char}` to add, `cs{old}{new}` to change, `ds{char}` to delete.                                       |
+| [`monaqa/dial.nvim`](https://github.com/monaqa/dial.nvim)                           | Extended increment/decrement. `<C-a>`/`<C-x>` cycles `true`↔`false`, `&&`↔`\|\|`, `const`↔`let`, dates, and semver numbers in addition to integers.                                       |
+| [`ThePrimeagen/refactoring.nvim`](https://github.com/ThePrimeagen/refactoring.nvim) | Structural refactoring tool powered by Treesitter and LSP. Supports extraction, inlining, and block refactoring.                                                                          |
+| [`LunarVim/bigfile.nvim`](https://github.com/LunarVim/bigfile.nvim)                 | Performance optimizer that automatically disables heavy features for files exceeding a specific size.                                                                                     |
+| [`MagicDuck/grug-far.nvim`](https://github.com/MagicDuck/grug-far.nvim)             | Project-wide search and replace in a dedicated buffer. Fast, visual, and highly configurable.                                                                                             |
+| [`chrisgrieser/nvim-spider`](https://github.com/chrisgrieser/nvim-spider)           | Subword motions for `w`, `e`, `b`, and `ge`. Works with camelCase and snake_case out of the box.                                                                                          |
+| [`tpope/vim-sleuth`](https://github.com/tpope/vim-sleuth)                           | Automatically detects and sets `tabstop`/`shiftwidth` from the file being edited. Useful when working across projects with different indent conventions.                                  |
+| [`stevearc/dressing.nvim`](https://github.com/stevearc/dressing.nvim)               | Replaces `vim.ui.select` and `vim.ui.input` with floating pickers. LSP rename and code action menus use fzf-lua automatically.                                                            |
+| [`RRethy/vim-illuminate`](https://github.com/RRethy/vim-illuminate)                 | Highlights all other occurrences of the word/symbol under the cursor using LSP or treesitter. 100ms delay to avoid flashing on fast cursor movement.                                      |
+| [`andymass/vim-matchup`](https://github.com/andymass/vim-matchup)                   | Extends `%` to match language keywords (`if`/`end`, `function`/`end`, HTML tags) using treesitter. Offscreen matches shown in a popup.                                                    |
+| [`folke/ts-comments.nvim`](https://github.com/folke/ts-comments.nvim)               | Fixes comment strings in embedded languages. `gc` inside a `<script>` block uses `//`, inside CSS uses `/* */`, inside TSX expressions uses the correct style.                            |
+| [`danymat/neogen`](https://github.com/danymat/neogen)                               | Docstring/annotation generator. `<leader>ng` inserts a template for the function or class under the cursor. Python: Google style. TypeScript: JSDoc. Lua: LDoc. Go: godoc. Rust: rustdoc. |
+| [`kevinhwang91/nvim-ufo`](https://github.com/kevinhwang91/nvim-ufo)                 | LSP/treesitter-based code folding. Replaces Neovim's unreliable built-in folding. All folds start open (`foldlevel = 99`).                                                                |
 
 ### Navigation (`navigation.lua`)
 
@@ -352,14 +368,14 @@ To add your own snippets, create or edit the relevant `snippets/<filetype>.json`
 
 ### General
 
-| Key         | Mode            | Action                                                                |
-| ----------- | --------------- | --------------------------------------------------------------------- |
-| `<leader>p` | visual          | Paste without overwriting the yank register                           |
-| `<leader>y` | normal / visual | Copy to system clipboard                                              |
-| `<leader>Y` | normal          | Copy line to system clipboard                                         |
-| `<leader>s` | normal          | Replace word under cursor across the file (opens substitution prompt) |
-| `<leader>x" | normal          | Make current file executable (`chmod +x`)                             |
-| `<leader>u" | normal          | Toggle undo tree                                                      |
+| Key         | Mode            | Action                                            |
+| ----------- | --------------- | ------------------------------------------------- |
+| `<leader>p` | visual          | Paste without overwriting the yank register       |
+| `<leader>y` | normal / visual | Copy to system clipboard                          |
+| `<leader>Y` | normal          | Copy line to system clipboard                     |
+| `<leader>s` | normal          | Open Grug-Far for project-wide search and replace |
+| `<leader>x` | normal          | Make current file executable (`chmod +x`)         |
+| `<leader>u` | normal          | Toggle undo tree                                  |
 
 ### Navigation
 
@@ -405,6 +421,17 @@ Custom LSP keymaps:
 | `<leader>ih` | normal | Toggle inlay hints    |
 | `<leader>gf` | normal | Format current buffer |
 
+### Refactoring
+
+| Key          | Mode   | Action                   |
+| ------------ | ------ | ------------------------ |
+| `<leader>re` | visual | Extract function         |
+| `<leader>rf` | visual | Extract function to file |
+| `<leader>rv` | visual | Extract variable         |
+| `<leader>ri` | normal | Inline variable          |
+| `<leader>rb` | normal | Extract block            |
+| `<leader>rB` | normal | Extract block to file    |
+
 ### Diagnostics / Trouble
 
 | Key          | Mode   | Action                   |
@@ -414,6 +441,17 @@ Custom LSP keymaps:
 | `<leader>ts` | normal | Symbol outline           |
 | `grr`        | normal | LSP references           |
 | `<leader>tt` | normal | TODO / FIXME list        |
+
+### Treesitter Textobjects
+
+| Key  | Mode        | Action                          |
+| ---- | ----------- | ------------------------------- |
+| `af` | visual / op | Select around function          |
+| `if` | visual / op | Select inside function          |
+| `ac` | visual / op | Select around class             |
+| `ic` | visual / op | Select inside class             |
+| `]f` | normal      | Jump to next function start     |
+| `[f` | normal      | Jump to previous function start |
 
 ### Folding (nvim-ufo)
 

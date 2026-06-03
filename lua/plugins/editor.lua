@@ -1,7 +1,83 @@
 ---@type LazySpec
 return {
 	{
-		"windwp/nvim-autopairs",
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"lewis6991/async.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {},
+		keys = {
+			{
+				"<leader>re",
+				":Refactor extract ",
+				mode = "x",
+				desc = "Extract function",
+			},
+			{
+				"<leader>rf",
+				":Refactor extract_to_file ",
+				mode = "x",
+				desc = "Extract function to file",
+			},
+			{
+				"<leader>rv",
+				":Refactor extract_var ",
+				mode = "x",
+				desc = "Extract variable",
+			},
+			{
+				"<leader>ri",
+				":Refactor inline_var",
+				mode = { "n", "x" },
+				desc = "Inline variable",
+			},
+			{
+				"<leader>rb",
+				":Refactor extract_block ",
+				mode = "n",
+				desc = "Extract block",
+			},
+			{
+				"<leader>rB",
+				":Refactor extract_block_to_file ",
+				mode = "n",
+				desc = "Extract block to file",
+			},
+		},
+	},
+	{
+		"LunarVim/bigfile.nvim",
+		opts = {
+			filesize = 2, -- MiB
+		},
+	},
+	{
+		"MagicDuck/grug-far.nvim",
+
+	    opts = { headerMaxWidth = 80 },
+	    keys = {
+	        {
+	            "<leader>s",
+	            function()
+	                local grug = require("grug-far")
+	                local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+	                grug.open({
+	                    transient = true,
+	                    prefills = {
+	                        filesFilter = ext and ext ~= "" and ("*." .. ext) or nil,
+	                    },
+	                })
+	            end,
+	            mode = { "n", "v" },
+	            desc = "Search and replace",
+	        },
+	    },
+	},
+	{
+	    "windwp/nvim-autopairs",
+
 		event = "InsertEnter",
 		opts = {},
 	},
