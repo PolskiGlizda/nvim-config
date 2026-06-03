@@ -55,7 +55,7 @@ return {
 		config = function()
 			require("lualine").setup({
 				options = {
-					theme = "onedark",
+					theme = "tokyonight",
 				},
 				sections = {
 					lualine_a = { "mode" },
@@ -67,6 +67,11 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		"utilyre/barbecue.nvim",
+		dependencies = { "SmiteshP/nvim-navic", "nvim-mini/mini.icons" },
+		opts = { theme = "tokyonight" },
 	},
 	{
 		"nvimdev/indentmini.nvim",

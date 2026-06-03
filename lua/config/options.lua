@@ -38,6 +38,15 @@ vim.opt.concealcursor = "nc"
 --- reduce latency for cursorhold events (affects gitsigns, hover)
 vim.opt.updatetime = 250
 
+--- fold column glyphs (nerd font required)
+vim.opt.fillchars = {
+	foldopen = "▾",
+	foldclose = "▸",
+	fold = " ",
+	foldsep = " ",
+	eob = " ",
+}
+
 --- folding — high foldlevel keeps all folds open by default (nvim-ufo)
 vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99

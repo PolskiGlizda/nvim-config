@@ -110,6 +110,10 @@ return {
 					vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Go to implementation" })
 
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client and client.server_capabilities.documentSymbolProvider then
+						require("nvim-navic").attach(client, bufnr)
+					end
+
 					if client and client:supports_method("textDocument/documentColor") then
 						vim.lsp.document_color.enable(true, bufnr)
 					end

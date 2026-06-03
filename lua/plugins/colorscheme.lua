@@ -1,13 +1,17 @@
 ---@type LazySpec
 return {
 	{
-		"navarasu/onedark.nvim",
+		"folke/tokyonight.nvim",
 		priority = 1000,
 		config = function()
-			require("onedark").setup({
-				style = "darker",
+			require("tokyonight").setup({
+				style = "night",
+				styles = {
+					comments = { italic = true },
+					keywords = { italic = true },
+				},
 			})
-			require("onedark").load()
+			vim.cmd("colorscheme tokyonight")
 		end,
 	},
 }

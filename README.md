@@ -136,6 +136,10 @@ uv add --dev mypy
 
 ## Design Decisions
 
+### tokyonight over onedark
+
+tokyonight ships explicit integration palettes for virtually every plugin in this config — blink.cmp, noice, trouble, gitsigns, lualine, which-key, lazy.nvim, and more. With onedark each plugin falls back to its own default highlight groups, producing a disjointed look. With tokyonight, a single colorscheme call propagates a consistent palette across all UI surfaces automatically. The `night` style is used for high contrast.
+
 ### Native LSP over plugin wrappers
 
 Uses Neovim's native `vim.lsp.enable()` and `vim.lsp.config()` API (0.11+) rather than configuring servers through `lspconfig.server.setup()`. This keeps server configuration declarative and consistent across all servers.
@@ -212,10 +216,12 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 | Plugin                                                                                                      | Purpose                                                                                                                                                                                                       |
 | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`navarasu/onedark.nvim`](https://github.com/navarasu/onedark.nvim)                                         | Colorscheme. Uses the `darker` style.                                                                                                                                                                         |
+| [`folke/tokyonight.nvim`](https://github.com/folke/tokyonight.nvim)                                         | Colorscheme (night style). Ships integration palettes for blink.cmp, noice, trouble, gitsigns, lualine, and other plugins for a cohesive look across all UI surfaces.                                        |
 | [`nvim-mini/mini.icons`](https://github.com/echasnovski/mini.icons)                                         | Icon provider used by oil, fzf-lua, lualine, trouble, and render-markdown.                                                                                                                                    |
 | [`folke/noice.nvim`](https://github.com/folke/noice.nvim)                                                   | Routes LSP progress, notifications, and `vim.ui.input` prompts (rename, etc.) through a styled floating UI. Cmdline kept at the bottom (`view = "cmdline"`).                                                  |
-| [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim)                                 | Statusline showing mode, branch, diagnostics, filename, encoding, filetype, progress, clock, and cursor position.                                                                                             |
+| [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim)                                 | Statusline showing mode, branch, diagnostics, filename, encoding, filetype, progress, clock, and cursor position. Uses the tokyonight theme for palette consistency.                                          |
+| [`utilyre/barbecue.nvim`](https://github.com/utilyre/barbecue.nvim)                                         | LSP breadcrumb trail in the winbar. Shows the current symbol path (`Module > Class > method`) updated on cursor move. Powered by nvim-navic attached on `LspAttach`.                                         |
+| [`SmiteshP/nvim-navic`](https://github.com/SmiteshP/nvim-navic)                                             | LSP symbol provider for barbecue. Attaches to each LSP client that supports `documentSymbolProvider`.                                                                                                        |
 | [`nvimdev/indentmini.nvim`](https://github.com/nvimdev/indentmini.nvim)                                     | Lightweight indent guides.                                                                                                                                                                                    |
 | [`NvChad/nvim-colorizer.lua`](https://github.com/NvChad/nvim-colorizer.lua)                                 | Inline colour previews for hex codes and CSS colour names.                                                                                                                                                    |
 | [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Renders markdown formatting inline in normal mode. Active for markdown and vimwiki filetypes.                                                                                                                 |
@@ -300,7 +306,7 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 
 | Plugin                                                                                | Purpose                                                                                                                                |
 | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [`ibhagwan/fzf-lua`](https://github.com/ibhagwan/fzf-lua)                             | Fuzzy finder for files, grep, buffers, recent files, git commits, and LSP symbols. Registered as the `vim.ui.select` provider for code actions and other picker prompts.                 |
+| [`ibhagwan/fzf-lua`](https://github.com/ibhagwan/fzf-lua)                             | Fuzzy finder for files, grep, buffers, recent files, git commits, and LSP symbols. Registered as the `vim.ui.select` provider. Configured with rounded borders and 85×80% window sizing. |
 | [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim)                     | Displays available keybindings in a popup after pressing `<leader>`. Groups configured for `f`, `g`, `t`, `p`, `y` prefixes.           |
 | [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim)                           | File explorer as an editable buffer. Shows icons, file sizes, and hidden files. Git status and LSP diagnostics shown via dependencies. |
 | [`christoomey/vim-tmux-navigator`](https://github.com/christoomey/vim-tmux-navigator) | Seamless pane navigation between Neovim splits and tmux panes using `<C-hjkl>`.                                                        |

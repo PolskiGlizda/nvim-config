@@ -4,6 +4,12 @@ return {
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-mini/mini.icons" },
 		opts = {
+			winopts = {
+				border = "rounded",
+				height = 0.85,
+				width = 0.80,
+				preview = { border = "rounded" },
+			},
 			grep = {
 				rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
 			},
