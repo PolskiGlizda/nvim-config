@@ -192,6 +192,10 @@ The htmx LSP advertises `hoverProvider = true` and attaches to TypeScript files 
 
 All LSPs that support inlay hints (ts, rust-analyzer, gopls, clangd) have them enabled globally. A toggle at `<leader>ih` lets you hide them when they add too much noise.
 
+### `showmode` disabled
+
+`-- INSERT --` / `-- VISUAL --` is suppressed (`showmode = false`) because lualine already renders the current mode in the statusline. Showing it twice is noise. `splitright` and `splitbelow` are enabled so vertical and horizontal splits open in the direction that matches reading order. `cursorline` is enabled for easier line tracking.
+
 ### Diagnostic virtual lines, not virtual text
 
 `virtual_lines = true` renders diagnostics on a dedicated line below the code rather than inline. This avoids cluttering the code itself and works better with longer error messages. `virtual_text` is explicitly disabled to prevent duplication.

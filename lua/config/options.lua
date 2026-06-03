@@ -22,6 +22,12 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 --- ui
+vim.opt.cursorline = true
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.showmode = false
+vim.opt.smoothscroll = false
+vim.opt.timeoutlen = 1000
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
