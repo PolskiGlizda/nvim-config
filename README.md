@@ -41,7 +41,7 @@ A personal Neovim configuration targeting Neovim 0.12+ built around a modern LSP
 
 Optional but expected:
 
-- `tmux` with [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator) configured on the tmux side
+- [WezTerm](https://wezfurlong.org/wezterm/) with the `smart-splits.nvim` plugin applied to its config for seamless split navigation
 - `stylua` for Lua formatting
 - `prettier` for web formatting
 - `ruff` for Python formatting
@@ -309,7 +309,7 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | [`ibhagwan/fzf-lua`](https://github.com/ibhagwan/fzf-lua)                             | Fuzzy finder for files, grep, buffers, recent files, git commits, and LSP symbols. Registered as the `vim.ui.select` provider. Configured with rounded borders and 85×80% window sizing. |
 | [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim)                     | Displays available keybindings in a popup after pressing `<leader>`. Groups configured for `f`, `g`, `t`, `p`, `y` prefixes.           |
 | [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim)                           | File explorer as an editable buffer. Shows icons, file sizes, and hidden files. Git status and LSP diagnostics shown via dependencies. |
-| [`christoomey/vim-tmux-navigator`](https://github.com/christoomey/vim-tmux-navigator) | Seamless pane navigation between Neovim splits and tmux panes using `<C-hjkl>`.                                                        |
+| [`mrjones2014/smart-splits.nvim`](https://github.com/mrjones2014/smart-splits.nvim)   | Seamless split navigation and resizing across Neovim splits and WezTerm panes. `<C-hjkl>` to move, `<A-hjkl>` to resize.              |
 | [`mbbill/undotree`](https://github.com/mbbill/undotree)                               | Visual undo history tree.                                                                                                              |
 
 ### Git (`git.lua`)
@@ -387,13 +387,17 @@ To add your own snippets, create or edit the relevant `snippets/<filetype>.json`
 
 ### Navigation
 
-| Key          | Mode   | Action                         |
-| ------------ | ------ | ------------------------------ |
-| `<C-h>`      | normal | Move to left pane / tmux pane  |
-| `<C-j>`      | normal | Move to lower pane / tmux pane |
-| `<C-k>`      | normal | Move to upper pane / tmux pane |
-| `<C-l>`      | normal | Move to right pane / tmux pane |
-| `<leader>pv` | normal | Open Oil file explorer         |
+| Key          | Mode   | Action                                    |
+| ------------ | ------ | ----------------------------------------- |
+| `<C-h>`      | normal | Move to left split / WezTerm pane         |
+| `<C-j>`      | normal | Move to lower split / WezTerm pane        |
+| `<C-k>`      | normal | Move to upper split / WezTerm pane        |
+| `<C-l>`      | normal | Move to right split / WezTerm pane        |
+| `<A-h>`      | normal | Resize split left / WezTerm pane          |
+| `<A-j>`      | normal | Resize split down / WezTerm pane          |
+| `<A-k>`      | normal | Resize split up / WezTerm pane            |
+| `<A-l>`      | normal | Resize split right / WezTerm pane         |
+| `<leader>pv` | normal | Open Oil file explorer                    |
 
 ### Find (fzf-lua)
 

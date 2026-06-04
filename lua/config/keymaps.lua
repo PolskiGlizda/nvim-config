@@ -27,8 +27,3 @@ vim.keymap.set("n", "]w", function() vim.diagnostic.jump({ count = 1, float = tr
 vim.keymap.set("n", "[w", function() vim.diagnostic.jump({ count = -1, float = true, severity = vim.diagnostic.severity.WARN }) end, { desc = "Prev warning" })
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 
---- pane navigation (overridden by vim-tmux-navigator)
-vim.keymap.set("n", "<c-k>", ":wincmd k<CR>", { desc = "Navigate up" })
-vim.keymap.set("n", "<c-j>", ":wincmd j<CR>", { desc = "Navigate down" })
-vim.keymap.set("n", "<c-h>", ":wincmd h<CR>", { desc = "Navigate left" })
-vim.keymap.set("n", "<c-l>", ":wincmd l<CR>", { desc = "Navigate right" })

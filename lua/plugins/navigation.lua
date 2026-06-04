@@ -61,12 +61,19 @@ return {
 		lazy = false,
 	},
 	{
-		"christoomey/vim-tmux-navigator",
+		"mrjones2014/smart-splits.nvim",
 		config = function()
-			vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Navigate left" })
-			vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "Navigate down" })
-			vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "Navigate up" })
-			vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "Navigate right" })
+			local splits = require("smart-splits")
+			-- pane navigation
+			vim.keymap.set("n", "<C-h>", splits.move_cursor_left, { desc = "Navigate left" })
+			vim.keymap.set("n", "<C-j>", splits.move_cursor_down, { desc = "Navigate down" })
+			vim.keymap.set("n", "<C-k>", splits.move_cursor_up, { desc = "Navigate up" })
+			vim.keymap.set("n", "<C-l>", splits.move_cursor_right, { desc = "Navigate right" })
+			-- pane resizing
+			vim.keymap.set("n", "<A-h>", splits.resize_left, { desc = "Resize left" })
+			vim.keymap.set("n", "<A-j>", splits.resize_down, { desc = "Resize down" })
+			vim.keymap.set("n", "<A-k>", splits.resize_up, { desc = "Resize up" })
+			vim.keymap.set("n", "<A-l>", splits.resize_right, { desc = "Resize right" })
 		end,
 	},
 	{
