@@ -64,17 +64,42 @@ return {
 		"mrjones2014/smart-splits.nvim",
 		config = function()
 			local splits = require("smart-splits")
-			-- pane navigation
+			-- <C-hjkl>: Neovim-internal split navigation (no WezTerm crossing)
 			vim.keymap.set("n", "<C-h>", splits.move_cursor_left, { desc = "Navigate left" })
 			vim.keymap.set("n", "<C-j>", splits.move_cursor_down, { desc = "Navigate down" })
 			vim.keymap.set("n", "<C-k>", splits.move_cursor_up, { desc = "Navigate up" })
 			vim.keymap.set("n", "<C-l>", splits.move_cursor_right, { desc = "Navigate right" })
-			-- pane resizing
-			vim.keymap.set("n", "<A-h>", splits.resize_left, { desc = "Resize left" })
-			vim.keymap.set("n", "<A-j>", splits.resize_down, { desc = "Resize down" })
-			vim.keymap.set("n", "<A-k>", splits.resize_up, { desc = "Resize up" })
-			vim.keymap.set("n", "<A-l>", splits.resize_right, { desc = "Resize right" })
+			-- <A-hjkl>: WezTerm-aware navigation — WezTerm forwards ALT+hjkl here,
+			-- smart-splits crosses pane boundaries into terminal panes
+			vim.keymap.set("n", "<A-h>", splits.move_cursor_left, { desc = "Navigate left" })
+			vim.keymap.set("n", "<A-j>", splits.move_cursor_down, { desc = "Navigate down" })
+			vim.keymap.set("n", "<A-k>", splits.move_cursor_up, { desc = "Navigate up" })
+			vim.keymap.set("n", "<A-l>", splits.move_cursor_right, { desc = "Navigate right" })
+			-- <A-HJKL>: resize — matches WezTerm's ALT|SHIFT AdjustPaneSize bindings
+			vim.keymap.set("n", "<A-H>", splits.resize_left, { desc = "Resize left" })
+			vim.keymap.set("n", "<A-J>", splits.resize_down, { desc = "Resize down" })
+			vim.keymap.set("n", "<A-K>", splits.resize_up, { desc = "Resize up" })
+			vim.keymap.set("n", "<A-L>", splits.resize_right, { desc = "Resize right" })
 		end,
+	},
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		opts = {
+			terminal = {},
+		},
+	},
+	{
+		"mikavilpas/yazi.nvim",
+		event = "VeryLazy",
+		keys = {
+			{ "<leader>-",  "<cmd>Yazi<CR>",     desc = "Yazi (file dir)" },
+			{ "<leader>py", "<cmd>Yazi cwd<CR>", desc = "Yazi (cwd)" },
+		},
+		opts = {
+			open_for_directories = false,
+		},
 	},
 	{
 		"mbbill/undotree",

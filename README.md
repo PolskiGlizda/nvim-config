@@ -307,9 +307,11 @@ The startup joke is fetched asynchronously and cached to disk. On each launch th
 | Plugin                                                                                | Purpose                                                                                                                                |
 | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | [`ibhagwan/fzf-lua`](https://github.com/ibhagwan/fzf-lua)                             | Fuzzy finder for files, grep, buffers, recent files, git commits, and LSP symbols. Registered as the `vim.ui.select` provider. Configured with rounded borders and 85×80% window sizing. |
-| [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim)                     | Displays available keybindings in a popup after pressing `<leader>`. Groups configured for `f`, `g`, `t`, `p`, `y` prefixes.           |
-| [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim)                           | File explorer as an editable buffer. Shows icons, file sizes, and hidden files. Git status and LSP diagnostics shown via dependencies. |
-| [`mrjones2014/smart-splits.nvim`](https://github.com/mrjones2014/smart-splits.nvim)   | Seamless split navigation and resizing across Neovim splits and WezTerm panes. `<C-hjkl>` to move, `<A-hjkl>` to resize.              |
+| [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim)                     | Displays available keybindings in a popup after pressing `<leader>`. Groups: `f` find, `g` git, `t` trouble, `p` project (Oil `pv`, Yazi `py`), `y` yank, `c` code. |
+| [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim)                           | File explorer as an editable buffer. Shows icons, file sizes, and hidden files. Git status and LSP diagnostics shown via dependencies. Default file explorer. |
+| [`mikavilpas/yazi.nvim`](https://github.com/mikavilpas/yazi.nvim)                     | Yazi file manager in a floating terminal. Complements Oil: use Yazi for rich visual browsing and preview, Oil for bulk rename/move via Vim motions. |
+| [`folke/snacks.nvim`](https://github.com/folke/snacks.nvim)                           | Utility plugin collection. Used by yazi.nvim for its floating terminal window. Only the `terminal` module is enabled. |
+| [`mrjones2014/smart-splits.nvim`](https://github.com/mrjones2014/smart-splits.nvim)   | Seamless split navigation and resizing across Neovim splits and WezTerm panes. `<C-hjkl>` / `<A-hjkl>` to navigate, `<A-HJKL>` to resize. |
 | [`mbbill/undotree`](https://github.com/mbbill/undotree)                               | Visual undo history tree.                                                                                                              |
 
 ### Git (`git.lua`)
@@ -387,17 +389,23 @@ To add your own snippets, create or edit the relevant `snippets/<filetype>.json`
 
 ### Navigation
 
-| Key          | Mode   | Action                                    |
-| ------------ | ------ | ----------------------------------------- |
-| `<C-h>`      | normal | Move to left split / WezTerm pane         |
-| `<C-j>`      | normal | Move to lower split / WezTerm pane        |
-| `<C-k>`      | normal | Move to upper split / WezTerm pane        |
-| `<C-l>`      | normal | Move to right split / WezTerm pane        |
-| `<A-h>`      | normal | Resize split left / WezTerm pane          |
-| `<A-j>`      | normal | Resize split down / WezTerm pane          |
-| `<A-k>`      | normal | Resize split up / WezTerm pane            |
-| `<A-l>`      | normal | Resize split right / WezTerm pane         |
-| `<leader>pv` | normal | Open Oil file explorer                    |
+| Key          | Mode   | Action                                                                 |
+| ------------ | ------ | ---------------------------------------------------------------------- |
+| `<C-h>`      | normal | Move to left split (Neovim-internal only)                              |
+| `<C-j>`      | normal | Move to lower split (Neovim-internal only)                             |
+| `<C-k>`      | normal | Move to upper split (Neovim-internal only)                             |
+| `<C-l>`      | normal | Move to right split (Neovim-internal only)                             |
+| `<A-h>`      | normal | Move to left split or WezTerm pane (WezTerm forwards `ALT+h` here)    |
+| `<A-j>`      | normal | Move to lower split or WezTerm pane                                    |
+| `<A-k>`      | normal | Move to upper split or WezTerm pane                                    |
+| `<A-l>`      | normal | Move to right split or WezTerm pane                                    |
+| `<A-H>`      | normal | Resize split left (matches WezTerm `ALT+SHIFT+H`)                     |
+| `<A-J>`      | normal | Resize split down (matches WezTerm `ALT+SHIFT+J`)                     |
+| `<A-K>`      | normal | Resize split up (matches WezTerm `ALT+SHIFT+K`)                       |
+| `<A-L>`      | normal | Resize split right (matches WezTerm `ALT+SHIFT+L`)                    |
+| `<leader>pv` | normal | Open Oil file explorer                                                 |
+| `<leader>-`  | normal | Open Yazi at the current file's directory                              |
+| `<leader>py` | normal | Open Yazi at the current working directory                             |
 
 ### Find (fzf-lua)
 
